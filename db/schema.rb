@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_06_115516) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_06_140715) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,11 +18,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_06_115516) do
     t.string "title"
     t.text "summary"
     t.string "length"
-    t.string "release_date"
+    t.date "release_date"
     t.string "genre"
     t.string "director"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "poster_url"
   end
 
   create_table "platforms", force: :cascade do |t|
