@@ -18,6 +18,7 @@ class PagesController < ApplicationController
       @movie = movies.sample
       @movie_title = @movie['title']
       @movie_summary = @movie['overview']
+      @movie_release_date = @movie['release_date'].first(4)
     end
 
     return @movie
