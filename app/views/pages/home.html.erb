@@ -3,4 +3,17 @@
 <% if @movie.present? %>
   <h2><%= @movie_title %></h2>
   <p><%= @movie_summary %></p>
+
+
+  <% if @movie_length >= 60 %>
+    <p>
+      <% if @hour = 1 %>
+        <%= @hours %> heure et <%= @min %> minutes
+      <% else %>
+        <%= @hours %> heures et <%= @min %> minutes
+      <% end %>
+    </p>
+  <% else %>
+    <p><%= @min %> minutes</p>
+  <% end %>
 <% end %>
