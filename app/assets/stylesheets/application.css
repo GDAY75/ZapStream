@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+body {
+  font-family: "Special Elite", system-ui, serif;
+  font-weight: 400;
+  font-style: normal;
+}
