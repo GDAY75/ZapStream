@@ -36,6 +36,7 @@ class PagesController < ApplicationController
       @movie_length = details["runtime"]
       director = credits["crew"].find { |person| person["job"] == "Director" }
       @movie_director = director ? director["name"] : "Inconnu"
+      @movie_categories = details["genres"]
 
       if @movie_length >= 60
         @hours = @movie_length / 60
