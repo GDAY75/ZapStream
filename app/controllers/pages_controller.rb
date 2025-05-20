@@ -19,6 +19,7 @@ class PagesController < ApplicationController
       @movie_title = @movie['title']
       @movie_summary = @movie['overview']
       @movie_release_date = @movie['release_date'].first(4)
+      @movie_poster_url = "https://image.tmdb.org/t/p/w500#{@movie['poster_path']}"
     end
 
     return @movie
