@@ -10,7 +10,6 @@
     <% end %>
   </p>
 
-
   <% if @movie_length >= 60 %>
     <p>
       <%= @hours %> h
@@ -19,7 +18,7 @@
   <% else %>
     <p><%= @min %> min</p>
   <% end %>
-  
+
   <% if @movie_provider.present? %>
     <% case @movie_provider %>
       <% when "Disney Plus" %>
