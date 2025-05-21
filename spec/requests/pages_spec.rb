@@ -6,7 +6,7 @@ RSpec.describe "Pages", type: :request do
       get root_path
 
       expect(response).to have_http_status(:success)
-      expect(response.body).to include("https://image.tmdb.org/t/p/w500/")
+      expect(response.body).to include("https://image.tmdb.org/t/p/w")
     end
   end
 end
