@@ -10,7 +10,7 @@ RSpec.describe "Pages", type: :request do
       expect(response.body).to include("https://image.tmdb.org/t/p/w")
     end
 
-    it "displays the name of the movie director"
+    it "displays the name of the movie director" do
       get root_path
       expect(response.body).to match(/Réalisateur :\s*.+/)
     end
