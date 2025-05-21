@@ -14,5 +14,14 @@ RSpec.describe "Pages", type: :request do
       get root_path
       expect(response.body).to match(/Réalisateur :\s*.+/)
     end
+
+    let(:categories) { ["Science-Fiction", "Thriller", "Aventure", "Action", "Horreur", "Crime", "Familial", "Fantastique", "Drame", "Comédie", "Mystère"] }
+
+    it "displays at least one movie category" do
+      get root_path
+
+      category = categories.any? { |category| response.body.include?(category) }
+      expect(category).to be_truthy
+    end
   end
 end
