@@ -22,12 +22,12 @@
   <% if @movie_provider.present? %>
     <% case @movie_provider %>
       <% when "Disney Plus" %>
-        <%= image_tag "/platforms/disneyplus.png", alt: "Disney Plus Logo" %>
+        <%= image_tag "platforms/disneyplus.png", alt: "Disney Plus Logo" %>
       <% when "Netflix" %>
         <%= image_tag "platforms/netflix.png", alt: "Netflix Logo" %>
-      <% when "Apple tv" %>
+      <% when "Apple TV+" %>
         <%= image_tag "platforms/appletv.png", alt: "Apple TV Logo" %>
-      <% when "Prime Video" %>
+      <% when "Amazon Prime Video" %>
         <%= image_tag "platforms/primevideo.png", alt: "Prime Video Logo" %>
     <% end %>
   <% else %>

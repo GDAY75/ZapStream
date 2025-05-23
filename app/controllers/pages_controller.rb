@@ -3,16 +3,18 @@ require "open-uri"
 class PagesController < ApplicationController
 
   def home
-    generate_movie
+    until @movie_provider == "Netflix" || @movie_provider == "Disney Plus" || @movie_provider == "Apple TV+" || @movie_provider == "Amazon Prime Video"
+      generate_movie
+      generate_movie_providers(@movie)
+    end
     generate_movie_details(@movie)
-    generate_movie_providers(@movie)
     generate_movie_credits(@movie)
   end
 
   private
 
   def generate_movie
-    url = "https://api.themoviedb.org/3/discover/movie?api_key=#{ENV['TMDB_KEY']}&region=FR&language=fr-FR"
+    url = "https://api.themoviedb.org/3/movie/top_rated?api_key=#{ENV['TMDB_KEY']}&region=FR&language=fr-FR&page=#{rand(1..500)}"
     response = JSON.parse(URI.open(url).read)
 
     if response["results"].present?
