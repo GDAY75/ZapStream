@@ -8,6 +8,9 @@ class PagesController < ApplicationController
       generate_movie_providers(@movie)
     end
     generate_movie_details(@movie)
+  end
+
+  def movie_details
     generate_movie_credits(@movie)
   end
 
@@ -58,7 +61,7 @@ class PagesController < ApplicationController
   end
 
   def generate_movie_credits(movie)
-    movie_id = movie["id"]
+    movie_id = params["movie"]["id"]
     url = "https://api.themoviedb.org/3/movie/#{movie_id}/credits?api_key=#{ENV['TMDB_KEY']}"
     response = JSON.parse(URI.open(url).read)
 
