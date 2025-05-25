@@ -68,6 +68,8 @@ class PagesController < ApplicationController
     if response["crew"].present?
       director = response["crew"].find { |person| person["job"] == "Director" }
       @movie_director = director ? director["name"] : "Inconnu"
+      @movie_director_photo_url = "https://image.tmdb.org/t/p/w154#{director["profile_path"]}"
+      @actors = response["cast"]
     end
   end
 end

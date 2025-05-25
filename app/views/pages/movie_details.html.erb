@@ -1,8 +1,12 @@
-<h1><%= params["title"] %></h1>
-<%= image_tag params["poster"] %>
-<p><%= params["summary"] %></p>
-<p><%= params["release_date"] %></p>
-<p>Réalisateur : <%= @movie_director %></p>
+<h1><%= params["movie"]["title"] %></h1>
+<%= image_tag "https://image.tmdb.org/t/p/w300#{params["movie"]['poster_path']}" %>
+<p><%= params["movie"]['overview'] %></p>
+<p><%= params["movie"]['release_date'].first(4) %></p>
+<p>Réalisateur : <%= image_tag @movie_director_photo_url %> <%= @movie_director %></p>
+<p>Acteurs : <%= image_tag "https://image.tmdb.org/t/p/w154#{@actors[0]["profile_path"]}" %> <%= @actors[0]["name"] %>
+  <%= image_tag "https://image.tmdb.org/t/p/w154#{@actors[1]["profile_path"]}" %> <%= @actors[1]["name"] %>
+  <%= image_tag "https://image.tmdb.org/t/p/w154#{@actors[2]["profile_path"]}" %> <%= @actors[2]["name"] %>
+</p>
 <p>Catégories :
   <% params["categories"].each do |category| %>
     "<%= category['name'] %>"
