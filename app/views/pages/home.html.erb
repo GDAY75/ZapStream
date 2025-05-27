@@ -17,9 +17,6 @@
 
     <div class="movie-details">
 
-      <div>
-        <h2><%= @movie_title %></h2>
-
         <% if @movie_length >= 60 %>
           <p class="text-grey">
             <%= @hours %> h
@@ -35,19 +32,31 @@
       </div>
 
       <div>
-        <% if @movie_provider.present? %>
-          <% case @movie_provider %>
-            <% when "Disney Plus" %>
-              <%= image_tag "/platforms/disneyplus.png", alt: "Disney Plus Logo" %>
-            <% when "Netflix" %>
-              <%= image_tag "platforms/netflix.png", alt: "Netflix Logo" %>
-            <% when "Apple tv" %>
-              <%= image_tag "platforms/appletv.png", alt: "Apple TV Logo" %>
-            <% when "Prime Video" %>
-              <%= image_tag "platforms/primevideo.png", alt: "Prime Video Logo" %>
+        <% if @movie_providers.present? %>
+          <% providers_logos = {
+            "Disney Plus" => ["platforms/disney.webp", "Disney Plus Logo"],
+            "Netflix" => ["platforms/netflix.webp", "Netflix Logo"],
+            "Apple TV+" => ["platforms/appletv.webp", "Apple TV Logo"],
+            "Amazon Prime Video" => ["platforms/primevideo.webp", "Prime Video Logo"],
+            "Canal+" => ["platforms/canal.webp", "Canal+"],
+            "M6+" => ["platforms/m6.webp", "M6+"],
+            "Arte" => ["platforms/arte.webp", "Arte"],
+            "France TV" => ["platforms/francetv.webp", "France TV"],
+            "Max" => ["platforms/max.webp", "Max"],
+            "TF1+" => ["platforms/tf1.webp", "TF1+"],
+            "Cine+ OCS Amazon Channel" => ["platforms/ocs.webp", "Cine+ OCS Amazon Channel"],
+            "Paramount Plus" => ["platforms/paramount.webp", "Paramount Plus"]
+          } %>
+
+          <% @movie_providers.each do |provider| %>
+            <% logo = providers_logos[provider] %>
+            <% if logo %>
+              <%= image_tag logo[0], alt: logo[1] %>
+            <% end %>
           <% end %>
+
         <% else %>
-          <p class="text-grey">Le film n'est pas disponible en streaming</p>
+          <p>Le film n'est pas disponible en streaming</p>
         <% end %>
       </div>
     </div>
