@@ -1,36 +1,44 @@
-<% if @movie.present? %>
-  <h1><%= @movie_title %></h1>
-  <%= image_tag @movie_poster_url %>
-  <p><%= @movie_summary %></p>
-  <p><%= @movie_release_date %></p>
-  <p>Réalisateur : <%= @movie_director %></p>
-  <p>Catégories :
-    <% @movie_categories.each do |category| %>
-      "<%= category['name'] %>"
-    <% end %>
-  </p>
+<div class="movie-container">
+  <% if @movie.present? %>
+    <div>
+      <%= image_tag @movie_poster_url, class:"movie-poster"%>
+    </div>
 
-  <% if @movie_length >= 60 %>
-    <p>
-      <%= @hours %> h
-      <%= @min < 10 ? "0#{@min}" : @min %>
-    </p>
-  <% else %>
-    <p><%= @min %> min</p>
-  <% end %>
+    <div class="movie-details">
 
-  <% if @movie_provider.present? %>
-    <% case @movie_provider %>
-      <% when "Disney Plus" %>
-        <%= image_tag "/platforms/disneyplus.png", alt: "Disney Plus Logo" %>
-      <% when "Netflix" %>
-        <%= image_tag "platforms/netflix.png", alt: "Netflix Logo" %>
-      <% when "Apple tv" %>
-        <%= image_tag "platforms/appletv.png", alt: "Apple TV Logo" %>
-      <% when "Prime Video" %>
-        <%= image_tag "platforms/primevideo.png", alt: "Prime Video Logo" %>
-    <% end %>
-  <% else %>
-    <p>Le film n'est pas disponible en streaming</p>
+      <div>
+        <h2><%= @movie_title %></h2>
+
+        <% if @movie_length >= 60 %>
+          <p class="text-grey">
+            <%= @hours %> h
+            <%= @min < 10 ? "0#{@min}" : @min %>
+          </p>
+        <% else %>
+          <p class="text-grey"><%= @min %> min</p>
+        <% end %>
+      </div>
+
+      <div>
+        <p class="text-red"><%= @movie_summary.split(".").first %>[...]</p>
+      </div>
+
+      <div>
+        <% if @movie_provider.present? %>
+          <% case @movie_provider %>
+            <% when "Disney Plus" %>
+              <%= image_tag "/platforms/disneyplus.png", alt: "Disney Plus Logo" %>
+            <% when "Netflix" %>
+              <%= image_tag "platforms/netflix.png", alt: "Netflix Logo" %>
+            <% when "Apple tv" %>
+              <%= image_tag "platforms/appletv.png", alt: "Apple TV Logo" %>
+            <% when "Prime Video" %>
+              <%= image_tag "platforms/primevideo.png", alt: "Prime Video Logo" %>
+          <% end %>
+        <% else %>
+          <p class="text-grey">Le film n'est pas disponible en streaming</p>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-<% end %>
+</div>

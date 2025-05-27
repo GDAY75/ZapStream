@@ -1,0 +1,27 @@
+.movie-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 640px;
+  padding: 32px;
+  background-color: #a29c9b;
+  font-weight: 900;
+  border-radius: 10% / 50%;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  color: #511c29;
+
+  h2 {
+    color: #511c29;
+  }
+}
+
+.movie-poster {
+  border-radius: 10% / 50%;
+}
+
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
