@@ -1,8 +1,19 @@
 <div class="movie-container">
+
   <% if @movie.present? %>
-    <div>
-      <%= image_tag @movie_poster_url, class:"movie-poster"%>
-    </div>
+    <h1><%= @movie_title %></h1>
+    <%= link_to movie_details_path(
+        movie: @movie,
+        categories: @movie_categories,
+        length: @movie_length,
+        provider: @movie_provider,
+        hours: @hours,
+        min: @min
+      ) do %>
+      <div>
+        <%= image_tag @movie_poster_url, class:"movie-poster"%>
+      </div>
+    <% end %>
 
     <div class="movie-details">
 
