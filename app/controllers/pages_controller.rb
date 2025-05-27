@@ -2,10 +2,14 @@ require "open-uri"
 
 class PagesController < ApplicationController
 
+  PROVIDERS = ["Netflix", "Disney Plus", "Apple TV+", "Amazon Prime Video", "Canal+", "M6+", "Arte", "France TV", "Max", "TF1+", "Cine+ OCS Amazon Channel", "Paramount Plus"]
+
   def home
-    until @movie_provider == "Netflix" || @movie_provider == "Disney Plus" || @movie_provider == "Apple TV+" || @movie_provider == "Amazon Prime Video"
+    loop do
       generate_movie
       generate_movie_providers(@movie)
+      @movie_providers ||= []
+      break if (@movie_providers & PROVIDERS).any?
     end
     generate_movie_details(@movie)
     generate_movie_credits(@movie)
@@ -53,7 +57,9 @@ class PagesController < ApplicationController
     response = JSON.parse(URI.open(url).read)
 
     if response["results"].present? && response["results"]["FR"].present? && response["results"]["FR"]["flatrate"].present?
-      @movie_provider = response["results"]["FR"]["flatrate"][0]["provider_name"]
+      movie_providers = response["results"]["FR"]["flatrate"]
+
+      @movie_providers = movie_providers.map { |provider| provider["provider_name"] }
     end
   end
 
