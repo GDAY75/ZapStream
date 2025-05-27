@@ -1,4 +1,15 @@
+// Import des Google Fonts
+
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+
+// Import des pages CSS
+
+@import "pages/index.scss";
+@import "components/index.scss";
+
+
+// CSS global
 
 body {
   font-family: "Special Elite", system-ui, serif;
@@ -6,8 +17,15 @@ body {
   font-style: normal;
   background-color: #511c29;
   color: #a29c9b;
+  margin-top: 32px;
+}
+
+h2 {
+  font-size: 48px;
 }
 
 p {
   font-size: 18px;
 }
+
+
