@@ -1,48 +1,64 @@
-<% if @movie.present? %>
-  <h1><%= @movie_title %></h1>
-  <%= image_tag @movie_poster_url %>
-  <p><%= @movie_summary %></p>
-  <p><%= @movie_release_date %></p>
-  <p>Réalisateur : <%= @movie_director %></p>
-  <p>Catégories :
-    <% @movie_categories.each do |category| %>
-      "<%= category['name'] %>"
-    <% end %>
-  </p>
+<div class="movie-container">
 
-  <% if @movie_length >= 60 %>
-    <p>
-      <%= @hours %> h
-      <%= @min < 10 ? "0#{@min}" : @min %>
-    </p>
-  <% else %>
-    <p><%= @min %> min</p>
-  <% end %>
-
-  <% if @movie_providers.present? %>
-    <% providers_logos = {
-      "Disney Plus" => ["platforms/disney.webp", "Disney Plus Logo"],
-      "Netflix" => ["platforms/netflix.webp", "Netflix Logo"],
-      "Apple TV+" => ["platforms/appletv.webp", "Apple TV Logo"],
-      "Amazon Prime Video" => ["platforms/primevideo.webp", "Prime Video Logo"],
-      "Canal+" => ["platforms/canal.webp", "Canal+"],
-      "M6+" => ["platforms/m6.webp", "M6+"],
-      "Arte" => ["platforms/arte.webp", "Arte"],
-      "France TV" => ["platforms/francetv.webp", "France TV"],
-      "Max" => ["platforms/max.webp", "Max"],
-      "TF1+" => ["platforms/tf1.webp", "TF1+"],
-      "Cine+ OCS Amazon Channel" => ["platforms/ocs.webp", "Cine+ OCS Amazon Channel"],
-      "Paramount Plus" => ["platforms/paramount.webp", "Paramount Plus"]
-    } %>
-
-    <% @movie_providers.each do |provider| %>
-      <% logo = providers_logos[provider] %>
-      <% if logo %>
-        <%= image_tag logo[0], alt: logo[1] %>
-      <% end %>
+  <% if @movie.present? %>
+    <h1><%= @movie_title %></h1>
+    <%= link_to movie_details_path(
+        movie: @movie,
+        categories: @movie_categories,
+        length: @movie_length,
+        provider: @movie_provider,
+        hours: @hours,
+        min: @min
+      ) do %>
+      <div>
+        <%= image_tag @movie_poster_url, class:"movie-poster"%>
+      </div>
     <% end %>
 
-  <% else %>
-    <p>Le film n'est pas disponible en streaming</p>
+    <div class="movie-details">
+
+        <% if @movie_length >= 60 %>
+          <p class="text-grey">
+            <%= @hours %> h
+            <%= @min < 10 ? "0#{@min}" : @min %>
+          </p>
+        <% else %>
+          <p class="text-grey"><%= @min %> min</p>
+        <% end %>
+      </div>
+
+      <div>
+        <p class="text-red"><%= @movie_summary.split(".").first %>[...]</p>
+      </div>
+
+      <div>
+        <% if @movie_providers.present? %>
+          <% providers_logos = {
+            "Disney Plus" => ["platforms/disney.webp", "Disney Plus Logo"],
+            "Netflix" => ["platforms/netflix.webp", "Netflix Logo"],
+            "Apple TV+" => ["platforms/appletv.webp", "Apple TV Logo"],
+            "Amazon Prime Video" => ["platforms/primevideo.webp", "Prime Video Logo"],
+            "Canal+" => ["platforms/canal.webp", "Canal+"],
+            "M6+" => ["platforms/m6.webp", "M6+"],
+            "Arte" => ["platforms/arte.webp", "Arte"],
+            "France TV" => ["platforms/francetv.webp", "France TV"],
+            "Max" => ["platforms/max.webp", "Max"],
+            "TF1+" => ["platforms/tf1.webp", "TF1+"],
+            "Cine+ OCS Amazon Channel" => ["platforms/ocs.webp", "Cine+ OCS Amazon Channel"],
+            "Paramount Plus" => ["platforms/paramount.webp", "Paramount Plus"]
+          } %>
+
+          <% @movie_providers.each do |provider| %>
+            <% logo = providers_logos[provider] %>
+            <% if logo %>
+              <%= image_tag logo[0], alt: logo[1] %>
+            <% end %>
+          <% end %>
+
+        <% else %>
+          <p>Le film n'est pas disponible en streaming</p>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-<% end %>
+</div>
