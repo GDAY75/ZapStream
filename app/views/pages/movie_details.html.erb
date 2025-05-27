@@ -1,0 +1,34 @@
+<h1><%= params["movie"]["title"] %></h1>
+<%= image_tag "https://image.tmdb.org/t/p/w300#{params["movie"]['poster_path']}" %>
+<p><%= params["movie"]['overview'] %></p>
+<p><%= params["movie"]['release_date'].first(4) %></p>
+<p>Réalisateur : <%= image_tag @movie_director_photo_url %> <%= @movie_director %></p>
+<p>Acteurs : <%= image_tag "https://image.tmdb.org/t/p/w154#{@actors[0]["profile_path"]}" %> <%= @actors[0]["name"] %>
+  <%= image_tag "https://image.tmdb.org/t/p/w154#{@actors[1]["profile_path"]}" %> <%= @actors[1]["name"] %>
+  <%= image_tag "https://image.tmdb.org/t/p/w154#{@actors[2]["profile_path"]}" %> <%= @actors[2]["name"] %>
+</p>
+<p>Catégories :
+  <% params["categories"].each do |category| %>
+    "<%= category['name'] %>"
+  <% end %>
+</p>
+
+<% if params["length"].to_i >= 60 %>
+  <p>
+    <%= params["hours"].to_i %> h
+    <%= params["min"].to_i < 10 ? "0#{params["min"].to_i}" : params["min"].to_i %>
+  </p>
+<% else %>
+  <p><%= params["min"].to_i %> min</p>
+<% end %>
+
+<% case params["provider"] %>
+  <% when "Disney Plus" %>
+    <%= image_tag "platforms/disneyplus.png", alt: "Disney Plus Logo" %>
+  <% when "Netflix" %>
+    <%= image_tag "platforms/netflix.png", alt: "Netflix Logo" %>
+  <% when "Apple TV+" %>
+    <%= image_tag "platforms/appletv.png", alt: "Apple TV Logo" %>
+  <% when "Amazon Prime Video" %>
+    <%= image_tag "platforms/primevideo.png", alt: "Prime Video Logo" %>
+<% end %>
