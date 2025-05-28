@@ -52,7 +52,7 @@
           <% @movie_providers.each do |provider| %>
             <% logo = providers_logos[provider] %>
             <% if logo %>
-              <%= image_tag logo[0], alt: logo[1] %>
+              <%= image_tag logo[0], alt: logo[1], class:"movie-provider" %>
             <% end %>
           <% end %>
 
