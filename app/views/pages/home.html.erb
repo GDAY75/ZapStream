@@ -1,21 +1,22 @@
 <div class="movie-container">
 
   <% if @movie.present? %>
-    <h1><%= @movie_title %></h1>
-    <%= link_to movie_details_path(
-        movie: @movie,
-        categories: @movie_categories,
-        length: @movie_length,
-        provider: @movie_provider,
-        hours: @hours,
-        min: @min
-      ) do %>
-      <div>
+    <div>
+      <%= link_to movie_details_path(
+          movie: @movie,
+          categories: @movie_categories,
+          length: @movie_length,
+          provider: @movie_provider,
+          hours: @hours,
+          min: @min
+        ) do %>
         <%= image_tag @movie_poster_url, class:"movie-poster"%>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
     <div class="movie-details">
+      <div>
+        <h2><%= @movie_title %></h2>
 
         <% if @movie_length >= 60 %>
           <p class="text-grey">
@@ -34,7 +35,7 @@
       <div>
         <% if @movie_providers.present? %>
           <% providers_logos = {
-            "Disney Plus" => ["platforms/disney.webp", "Disney Plus Logo"],
+            "Disney Plus" => ["platforms/disneyplus.webp", "Disney Plus Logo"],
             "Netflix" => ["platforms/netflix.webp", "Netflix Logo"],
             "Apple TV+" => ["platforms/appletv.webp", "Apple TV Logo"],
             "Amazon Prime Video" => ["platforms/primevideo.webp", "Prime Video Logo"],
@@ -51,7 +52,7 @@
           <% @movie_providers.each do |provider| %>
             <% logo = providers_logos[provider] %>
             <% if logo %>
-              <%= image_tag logo[0], alt: logo[1] %>
+              <%= image_tag logo[0], alt: logo[1], class:"movie-provider" %>
             <% end %>
           <% end %>
 
