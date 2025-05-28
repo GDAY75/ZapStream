@@ -55,11 +55,24 @@
 }
 
 #zap-button {
-  background-color: #a62639;
+  background-color: #db324d;
+  color: #511c29;
   width: 140px;
   height: 140px;
+  border: 2px solid #511c29;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   grid-column: span 3;
   justify-self: center;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Special Elite", system-ui, serif;
+  font-size: 48px;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #a62639;
+    cursor: pointer;
+  }
 }
