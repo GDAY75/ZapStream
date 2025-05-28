@@ -5,6 +5,9 @@ class PagesController < ApplicationController
   PROVIDERS = ["Netflix", "Disney Plus", "Apple TV+", "Amazon Prime Video", "Canal+", "M6+", "Arte", "France TV", "Max", "TF1+", "Cine+ OCS Amazon Channel", "Paramount Plus"]
 
   def home
+  end
+
+  def pick_movie
     loop do
       generate_movie
       generate_movie_providers(@movie)
@@ -12,10 +15,20 @@ class PagesController < ApplicationController
       break if (@movie_providers & PROVIDERS).any?
     end
     generate_movie_details(@movie)
-  end
-
-  def movie_details
     generate_movie_credits(@movie)
+
+    render partial: "movie", locals: {
+      movie: @movie,
+      movie_title: @movie_title,
+      movie_summary: @movie_summary,
+      movie_release_date: @movie_release_date,
+      movie_poster_url: @movie_poster_url,
+      movie_length: @movie_length,
+      movie_categories: @movie_categories,
+      hours: @hours,
+      min: @min,
+      movie_providers: @movie_providers
+    }
   end
 
   private
@@ -67,7 +80,7 @@ class PagesController < ApplicationController
   end
 
   def generate_movie_credits(movie)
-    movie_id = params["movie"]["id"]
+    movie_id = movie["id"]
     url = "https://api.themoviedb.org/3/movie/#{movie_id}/credits?api_key=#{ENV['TMDB_KEY']}"
     response = JSON.parse(URI.open(url).read)
 

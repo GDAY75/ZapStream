@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   root to: "pages#home"
-  get "movie_details", to: "pages#movie_details"
+  post "/pick_movie", to: "pages#pick_movie"
+  get "/movie_details", to: "pages#movie_details"
 end
