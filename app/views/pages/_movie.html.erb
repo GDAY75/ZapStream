@@ -13,11 +13,22 @@
   </div>
 
   <div class="movie-details">
-    <div>
-      <h2><%= movie_title %></h2>
+      <div>
+        <h2><%= movie_title %></h2>
 
-      <% if movie_length >= 60 %>
-        <p class="text-grey">
+        <% if movie_length >= 60 %>
+          <p class="text-grey">
+            <%= hours %> h
+            <%= min < 10 ? "0#{min}" : min %>
+          </p>
+        <% else %>
+          <p class="text-grey"><%= min %> min</p>
+        <% end %>
+      </div>
+
+      <div>
+        <p class="text-red"><%= movie_summary.split(".").first %>[...]</p>
+      </div>
 
         <div>
           <% if movie_providers.present? %>
@@ -49,6 +60,5 @@
           <% end %>
         </div>
       </div>
-      <% end %>
   </div>
 <% end %>
