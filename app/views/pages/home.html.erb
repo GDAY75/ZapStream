@@ -1,5 +1,4 @@
 <div class="movie-container">
-
   <% if @movie.present? %>
     <h1><%= @movie_title %></h1>
     <%= link_to movie_details_path(
@@ -16,7 +15,6 @@
     <% end %>
 
     <div class="movie-details">
-
         <% if @movie_length >= 60 %>
           <p class="text-grey">
             <%= @hours %> h
@@ -34,7 +32,7 @@
       <div>
         <% if @movie_providers.present? %>
           <% providers_logos = {
-            "Disney Plus" => ["platforms/disney.webp", "Disney Plus Logo"],
+            "Disney Plus" => ["platforms/disneyplus.webp", "Disney Plus Logo"],
             "Netflix" => ["platforms/netflix.webp", "Netflix Logo"],
             "Apple TV+" => ["platforms/appletv.webp", "Apple TV Logo"],
             "Amazon Prime Video" => ["platforms/primevideo.webp", "Prime Video Logo"],
@@ -61,4 +59,23 @@
       </div>
     </div>
   <% end %>
+</div>
+
+<div class="remote-container">
+  <div class="remote-square-button"></div>
+  <div class="remote-square-button"></div>
+  <div class="remote-square-button"></div>
+  <div class="remote-square-button"></div>
+  <div class="remote-square-button"></div>
+  <div class="remote-square-button"></div>
+  <div class="remote-square-button"></div>
+  <div class="remote-square-button"></div>
+  <div class="remote-square-button"></div>
+  <div id="zap-button"></div>
+  <div class="remote-rectangle-button"></div>
+  <div class="remote-rectangle-button"></div>
+  <div class="remote-rectangle-button"></div>
+  <div class="remote-rectangle-button"></div>
+  <div class="remote-rectangle-button"></div>
+  <div class="remote-rectangle-button"></div>
 </div>
