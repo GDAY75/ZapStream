@@ -2,11 +2,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
+// External libraries
+
+@import "bootstrap";
+@import "font-awesome";
+
 
 // Import des pages CSS
 
-@import "pages/index.scss";
 @import "components/index.scss";
+@import "pages/index.scss";
 
 
 // CSS global
@@ -17,8 +22,13 @@ body {
   font-style: normal;
   background-color: #511c29;
   color: #a29c9b;
-  margin-top: 32px;
+  margin: 0;
 }
+
+.main-content {
+  margin-top: 182px;
+}
+
 
 h2 {
   font-size: 48px;
@@ -27,5 +37,3 @@ h2 {
 p {
   font-size: 18px;
 }
-
-

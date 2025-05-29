@@ -1,0 +1,21 @@
+.navbar-main {
+  justify-content: space-between;
+  background: #a29c9b;
+  border-bottom: 1px solid #242529;
+  height: 150px;
+  min-height: 150px;
+  padding: 0px 30px;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  top: 0;
+}
+
+.navbar-main .navbar-brand img {
+  width: 123px;
+}
+
+.navbar-main .navbar-middle{
+  font-size: 110px;
+  padding-top: 20px;
+}
