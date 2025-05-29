@@ -10,10 +10,6 @@
   border-radius: 10% / 50%;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
   color: #511c29;
-
-  h2 {
-    color: #511c29;
-  }
 }
 
 .movie-poster {
@@ -24,6 +20,11 @@
   display: flex;
   flex-direction: column;
   align-self: flex-start;
+}
+
+.movie-provider {
+  width: 50px;
+  border-radius: 10% / 50%;
 }
 
 .remote-container {
