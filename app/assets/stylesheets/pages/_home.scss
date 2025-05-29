@@ -26,3 +26,54 @@
   width: 50px;
   border-radius: 10% / 50%;
 }
+
+.remote-container {
+  margin-top: 32px;
+  background-color: #2d2d2d;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  width: 240px;
+  height: auto;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 40px) 160px repeat(2, 40px);
+  grid-gap: 16px;
+  justify-items: center;
+  align-items: center;
+}
+
+.remote-square-button {
+  width: 40px;
+  height: 40px;
+  background-color: #a29c9b;
+}
+
+.remote-rectangle-button {
+  width: 60px;
+  height: 24px;
+  background-color: #a29c9b;
+}
+
+#zap-button {
+  background-color: #db324d;
+  color: #511c29;
+  width: 140px;
+  height: 140px;
+  border: 2px solid #511c29;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  grid-column: span 3;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Special Elite", system-ui, serif;
+  font-size: 48px;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #a62639;
+    cursor: pointer;
+  }
+}
