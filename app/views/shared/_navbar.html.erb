@@ -6,27 +6,18 @@
       <%= image_tag "logo.png"%>
     <% end %>
 
-    <!-- Menu centré -->
-    <div class="d-flex justify-content-center flex-grow-1">
-      <ul class="gap-4 navbar-nav">
-          <li class="navbar-middle">
-            <%= link_to "ZAP STREAM", root_path, class: "nav-link text-red" %>
-          </li>
+    <!-- Menu utilisateur à droite -->
+    <div class="d-flex ms-auto">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown profil-size">
+          <a href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-bars fs-1 text-red" alt="dropdown menu"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end fs-1" style=" background-color: #a29c9b; width: 300px"aria-labelledby="navbarDropdown">
+            <p class="fs-1 text-red text-center mt-3">Ma Zaplist</p>
+          </div>
+        </li>
       </ul>
     </div>
-
-      <!-- Menu utilisateur à droite -->
-      <div class="d-flex ms-auto">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item dropdown profil-size">
-            <a href="#" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa-solid fa-bars fs-1 text-red" alt="dropdown menu"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end fs-1" style=" background-color: #a29c9b; width: 300px"aria-labelledby="navbarDropdown">
-              <p class="fs-1 text-red text-center mt-3">Ma Zaplist</p>
-            </div>
-          </li>
-        </ul>
-      </div>
   </div>
 </div>
