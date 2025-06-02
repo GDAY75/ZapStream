@@ -86,14 +86,15 @@
 }
 
 #monitor-screen {
-	position: relative;
+  position: relative;
   background-color: #a29c9b;
-	background-size: cover;
-	background-position: top center;
-	height: 0;
-	padding-bottom: 56.25%;
-	position: relative;
-	overflow: hidden;
+  background-size: cover;
+  background-position: top center;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 @media all and (min-width: 960px) {
@@ -125,9 +126,8 @@
 .movie-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 30px;
-  width: 640px;
+  width: auto;
   padding: 32px;
   font-weight: 900;
   color: #511c29;
@@ -135,6 +135,8 @@
 
 .movie-poster {
   border-radius: 10% / 50%;
+  max-height: 440px;
+  width: auto;
 }
 
 .movie-details {
