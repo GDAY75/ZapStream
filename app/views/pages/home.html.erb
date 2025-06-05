@@ -1,21 +1,15 @@
-<div class="movie-container" id="display-movie">
-</div>
+<div class="home-container">
+  <div class="tv-container">
+    <div class="movie-container" id="display-movie">
+    </div>
+  </div>
 
-<div class="remote-container" data-controller="remote">
-  <div class="remote-square-button"></div>
-  <div class="remote-square-button"></div>
-  <div class="remote-square-button"></div>
-  <div class="remote-square-button"></div>
-  <div class="remote-square-button"></div>
-  <div class="remote-square-button"></div>
-  <div class="remote-square-button"></div>
-  <div class="remote-square-button"></div>
-  <div class="remote-square-button"></div>
-  <button id="zap-button" data-action="click->remote#zap">ZAP</button>
-  <div class="remote-rectangle-button"></div>
-  <div class="remote-rectangle-button"></div>
-  <div class="remote-rectangle-button"></div>
-  <div class="remote-rectangle-button"></div>
-  <div class="remote-rectangle-button"></div>
-  <div class="remote-rectangle-button"></div>
+  <div class="remote-container" data-controller="remote">
+
+    <button id="zap-button" data-action="click->remote#zap">ZAP</button>
+    <button id="netflix-button" class="remote-button" data-action="click->remote#toggleNetflix">
+      <%= image_tag "netflix-logo.png", alt: "Netflix" %>
+    </button>
+
+  </div>
 </div>

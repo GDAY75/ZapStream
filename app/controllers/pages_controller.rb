@@ -16,8 +16,15 @@ class PagesController < ApplicationController
       generate_movie
       generate_movie_providers(@movie)
       @movie_providers ||= []
-      break if (@movie_providers & PROVIDERS).any?
+
+      # Si un filtre est demandé (ex: "Netflix"), on vérifie que ce provider est dans la liste
+      if params[:filter].present?
+        break if @movie_providers.include?(params[:filter])
+      else
+        break if (@movie_providers & PROVIDERS).any?
+      end
     end
+
     generate_movie_details(@movie)
 
     render partial: "movie", locals: {

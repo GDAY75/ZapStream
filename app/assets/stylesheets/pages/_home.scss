@@ -1,15 +1,35 @@
+.home-container {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-inline: 100px;
+}
+
+.tv-container {
+  position: relative;
+  background-image: image-url("TV.png");
+  background-size: cover;       /* ajuste l'image pour remplir la div */
+  background-repeat: no-repeat;
+  width: 1118px;
+  height: 718px;
+}
+
 .movie-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
-  width: 640px;
+  width: 708px;
+  height: 514px;
   padding: 32px;
   background-color: #a29c9b;
   font-weight: 900;
-  border-radius: 10% / 50%;
+  border-radius: 12% / 45%;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
   color: #511c29;
+  position: absolute;
+  left: 72px;
+  top: 88px;
 }
 
 .movie-poster {
@@ -28,19 +48,12 @@
 }
 
 .remote-container {
-  margin-top: 32px;
-  background-color: #2d2d2d;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  width: 240px;
-  height: auto;
-  padding: 16px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 40px) 160px repeat(2, 40px);
-  grid-gap: 16px;
-  justify-items: center;
-  align-items: center;
+  position: relative;
+  background-image: image-url("Telecommande.png");
+  background-size: cover;       /* ajuste l'image pour remplir la div */
+  background-repeat: no-repeat;
+  width: 512px;
+  height: 768px;
 }
 
 .remote-square-button {
@@ -56,10 +69,10 @@
 }
 
 #zap-button {
-  background-color: #db324d;
-  color: #511c29;
-  width: 140px;
-  height: 140px;
+  background-color: #a62639;
+  color: #2d2d2d;
+  width: 200px;
+  height: 200px;
   border: 2px solid #511c29;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
   border-radius: 50%;
@@ -69,11 +82,53 @@
   justify-content: center;
   align-items: center;
   font-family: "Special Elite", system-ui, serif;
-  font-size: 48px;
+  font-size: 72px;
   font-weight: 600;
+  position: absolute;
+  left: 158px;
+  top: 172px;
+  padding-top: 20px;
+  transition: transform 0.1s ease-in-out;
 
   &:hover {
-    background-color: #a62639;
+    background-color: #db324d;
+    color: #a29c9b;
     cursor: pointer;
+  }
+
+  &:active {
+    transform: translateY(4px) scale(0.98);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.remote-button {
+  background-color: #232223;
+  border: 0.1px solid #232223;
+  border-radius: 24px;
+  width: 100px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  position: absolute;
+  left: 148px;
+  top: 56px;
+
+  img {
+    width: 88%;
+    transition: filter 0.1s;
+    border-radius: 24px;
+  }
+
+  &.active {
+    background-color: #333233;
+    transform: scale(0.95);
+
+    img {
+      filter: brightness(1.5);
+    }
   }
 }
