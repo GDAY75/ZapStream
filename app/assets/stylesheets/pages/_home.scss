@@ -85,7 +85,7 @@
   width: 110px;
   height: 110px;
   border: 2px solid #511c29;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px 0 lighten(black, 50%);
   border-radius: 50%;
   grid-column: span 3;
   justify-self: center;
@@ -96,7 +96,6 @@
   font-size: 40px;
   font-weight: 600;
   touch-action: manipulation;
-  outline: 8px solid rgba(219, 50, 77, 0.5);
   border-radius: 100%;
   transition: 0.3s;
   position: relative;
