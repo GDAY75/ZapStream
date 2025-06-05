@@ -28,31 +28,55 @@
 }
 
 .remote-container {
-  margin-top: 32px;
-  background-color: #2d2d2d;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  float: left;
+  margin-top: 20%;
+  margin-left: 50px;
+  background-color: #070D0D;
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
+  border-radius: 5px;
+  border: 2px solid rgb(5, 5, 5);
   width: 240px;
-  height: auto;
-  padding: 16px;
+  height: 640px;
+  padding: 16px 10px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 40px) 160px repeat(2, 40px);
+  grid-template-rows: 60px repeat(3, 40px) 160px repeat(3, 40px);
   grid-gap: 16px;
   justify-items: center;
   align-items: center;
+  transform: rotate(7deg);
 }
 
-.remote-square-button {
+.remote-button {
+  background-color: lighten(black, 15%);
+  border-radius: 4px;
+  padding: 5px;
+  box-shadow: 0 1px 2px 0 lighten(black, 50%);
+}
+
+.button-square {
   width: 40px;
   height: 40px;
-  background-color: #a29c9b;
 }
 
-.remote-rectangle-button {
+.button-rectangle {
   width: 60px;
   height: 24px;
-  background-color: #a29c9b;
+}
+
+#off-button {
+  background-color: #a62639;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  grid-column: span 3;
+  grid-row: 1;
+  justify-self: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1px 2px 0 lighten(black, 50%);
+  margin-left: 10px;
 }
 
 #zap-button {
@@ -75,5 +99,10 @@
   &:hover {
     background-color: #a62639;
     cursor: pointer;
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: translateY(1px);
   }
 }
