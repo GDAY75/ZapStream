@@ -33,30 +33,32 @@
         <div>
           <% if movie_providers.present? %>
             <% providers_logos = {
-              "Disney Plus" => ["platforms/disneyplus.webp", "Disney Plus Logo"],
-              "Netflix" => ["platforms/netflix.webp", "Netflix Logo"],
-              "Apple TV+" => ["platforms/appletv.webp", "Apple TV Logo"],
-              "Amazon Prime Video" => ["platforms/primevideo.webp", "Prime Video Logo"],
-              "Canal+" => ["platforms/canal.webp", "Canal+"],
-              "M6+" => ["platforms/m6.webp", "M6+"],
-              "Arte" => ["platforms/arte.webp", "Arte"],
-              "France TV" => ["platforms/francetv.webp", "France TV"],
-              "Max" => ["platforms/max.webp", "Max"],
-              "TF1+" => ["platforms/tf1.webp", "TF1+"],
-              "Cine+ OCS Amazon Channel" => ["platforms/ocs.webp", "Cine+ OCS Amazon Channel"],
-              "Paramount Plus" => ["platforms/paramount.webp", "Paramount Plus"]
+              "Disney Plus" => ["providers/disneyplus.webp", "Disney Plus", "https://www.disneyplus.com/fr-fr"],
+              "Netflix" => ["providers/netflix.webp", "Netflix", "https://www.netflix.com"],
+              "Apple TV+" => ["providers/appletv.webp", "Apple TV", "https://tv.apple.com/fr"],
+              "Amazon Prime Video" => ["providers/primevideo.webp", "Amazon Prime Video", "https://www.primevideo.com"],
+              "Canal+" => ["providers/canal.webp", "Canal+", "https://www.canalplus.com/"],
+              "M6+" => ["providers/m6.webp", "M6+", "https://www.m6.fr/"],
+              "Arte" => ["providers/arte.webp", "Arte", "https://www.arte.tv/fr"],
+              "France TV" => ["providers/francetv.webp", "France TV", "https://www.france.tv/"],
+              "Max" => ["providers/max.webp", "Max", "https://www.max.com/fr/fr"],
+              "TF1+" => ["providers/tf1.webp", "TF1+", "https://www.tf1.fr"],
+              "Cine+ OCS Amazon Channel" => ["providers/ocs.webp", "Cine+ OCS Amazon Channel", "https://www.primevideo.com"],
+              "Paramount Plus" => ["providers/paramount.webp", "Paramount Plus", "https://www.paramountplus.com/fr"]
             } %>
 
             <% movie_providers.each do |provider| %>
               <% logo = providers_logos[provider] %>
 
               <% if logo %>
-                <%= image_tag logo[0], alt: logo[1], class:"movie-provider" %>
+                <%= link_to logo[2], target: "_blank" do %>
+                  <%= image_tag logo[0], alt: logo[1], class:"movie-provider" %>
+                <% end %>
               <% end %>
             <% end %>
 
           <% else %>
-            <p>Le film n'est pas disponible en streaming</p>
+            <p>Le film n'est pas disponible en streaming.</p>
           <% end %>
         </div>
       </div>
