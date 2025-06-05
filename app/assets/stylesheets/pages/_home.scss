@@ -1,33 +1,10 @@
-.movie-container {
+#home-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  width: 640px;
+  justify-content: space-around;
   padding: 32px;
-  background-color: #a29c9b;
-  font-weight: 900;
-  border-radius: 10% / 50%;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
-  color: #511c29;
 }
 
-.movie-poster {
-  border-radius: 10% / 50%;
-}
-
-.movie-details {
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-}
-
-.movie-provider {
-  width: 50px;
-  border-radius: 10% / 50%;
-}
-
-.remote-container {
+#remote-container {
   margin-top: 32px;
   background-color: #2d2d2d;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
@@ -76,4 +53,99 @@
     background-color: #a62639;
     cursor: pointer;
   }
+}
+
+#monitor-container {
+  width: 1024px;
+  margin: auto;
+}
+
+#monitor {
+	background: #000;
+	position: relative;
+	border-top: 3px solid #a29c9b;
+	margin: 5%;
+	padding: 2% 2% 4% 2%;
+	border-radius: 10px;
+	border-bottom-left-radius: 50% 2%;
+	border-bottom-right-radius: 50% 2%;
+	transition: margin-right 1s;
+}
+
+#monitor:after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 3%;
+	left: 36%;
+	height: .5%;
+	width: 28%;
+	background: #a29c9b;
+	border-radius: 50%;
+	box-shadow: 0 0 3px 0 #a29c9b;
+}
+
+#monitor-screen {
+  position: relative;
+  background-color: #a29c9b;
+  background-size: cover;
+  background-position: top center;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+@media all and (min-width: 960px) {
+  #monitor {
+    -webkit-animation: tvflicker .2s infinite alternate;
+		-moz-animation:    tvflicker .5s infinite alternate;
+		-o-animation:      tvflicker .5s infinite alternate;
+		animation:         tvflicker .5s infinite alternate;
+  }
+
+  @-webkit-keyframes tvflicker {
+    0%   { box-shadow: 0 0 100px 0 rgba(162, 156, 155, 0.4); }
+    100% { box-shadow: 0 0 95px 0 rgba(162, 156, 155, 0.45); }
+  }
+  @-moz-keyframes tvflicker {
+    0%   { box-shadow: 0 0 100px 0 rgba(162, 156, 155, 0.4); }
+    100% { box-shadow: 0 0 60px 0 rgba(162, 156, 155, 0.6); }
+  }
+  @-o-keyframes tvflicker {
+    0%   { box-shadow: 0 0 100px 0 rgba(162, 156, 155, 0.4); }
+    100% { box-shadow: 0 0 60px 0 rgba(162, 156, 155, 0.6); }
+  }
+  @keyframes tvflicker {
+    0%   { box-shadow: 0 0 100px 0 rgba(162, 156, 155, 0.4); }
+    100% { box-shadow: 0 0 60px 0 rgba(162, 156, 155, 0.6); }
+  }
+}
+
+.movie-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  width: auto;
+  padding: 32px;
+  font-weight: 900;
+  color: #511c29;
+}
+
+.movie-poster {
+  border-radius: 10% / 50%;
+  max-height: 440px;
+  width: auto;
+}
+
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.movie-provider {
+  width: 50px;
+  border-radius: 10% / 50%;
 }
