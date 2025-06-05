@@ -16,7 +16,7 @@
   padding: 16px 10px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 60px repeat(3, 40px) 160px repeat(3, 40px);
+  grid-template-rows: 60px repeat(1, 50px) 160px repeat(3, 50px);
   grid-gap: 16px;
   justify-items: center;
   align-items: center;
@@ -31,13 +31,16 @@
 }
 
 .button-square {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .button-rectangle {
   width: 60px;
-  height: 24px;
+  height: 32px;
 }
 
 #off-button {
@@ -58,8 +61,8 @@
 #zap-button {
   background-color: #db324d;
   color: #511c29;
-  width: 110px;
-  height: 110px;
+  width: 160px;
+  height: 160px;
   border: 2px solid #511c29;
   box-shadow: 0 1px 2px 0 lighten(black, 50%);
   border-radius: 50%;
@@ -69,7 +72,7 @@
   justify-content: center;
   align-items: center;
   font-family: "Special Elite", system-ui, serif;
-  font-size: 40px;
+  font-size: 54px;
   font-weight: 600;
   touch-action: manipulation;
   border-radius: 100%;
