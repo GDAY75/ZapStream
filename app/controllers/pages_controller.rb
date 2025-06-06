@@ -2,7 +2,7 @@ require "open-uri"
 
 class PagesController < ApplicationController
 
-  PROVIDERS = ["Netflix", "Disney Plus", "Apple TV+", "Amazon Prime Video", "Canal+", "M6+", "Arte", "France TV", "Max", "TF1+", "Cine+ OCS Amazon Channel", "Paramount Plus"]
+  PROVIDERS = ["Netflix", "Disney Plus", "Apple TV+", "Amazon Prime Video", "Canal+", "Max", "TF1+", "Paramount Plus", "Crunchyroll"]
 
   def home
   end
