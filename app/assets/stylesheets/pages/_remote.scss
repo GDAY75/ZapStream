@@ -10,7 +10,7 @@
   padding: 16px 10px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 60px repeat(1, 50px) 160px repeat(3, 50px);
+  grid-template-rows: 60px repeat(1, 50px) 220px repeat(3, 50px);
   grid-gap: 16px;
   justify-items: center;
   align-items: center;
@@ -18,10 +18,23 @@
 }
 
 .remote-button {
-  background-color: lighten(black, 15%);
+  background-color: rgba(81, 28, 41, 0.8);
   border-radius: 4px;
   padding: 5px;
   box-shadow: 0 1px 2px 0 lighten(black, 50%);
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  background-blend-mode: multiply;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(81, 28, 41, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.97);
+    box-shadow: none;
+    background-color: rgba(81, 28, 41, 0);
+  }
 }
 
 .button-square {
@@ -76,6 +89,7 @@
   &:hover {
     background-color: #a62639;
     cursor: pointer;
+    color: rgba(81, 28, 41, 0.8);
   }
 
   &:active {
