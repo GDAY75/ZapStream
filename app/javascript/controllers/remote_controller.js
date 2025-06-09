@@ -4,6 +4,16 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
 
   zap() {
+
+    const display = document.getElementById("display-movie");
+
+    display.innerHTML = `
+      <video autoplay muted loop style="width: 100%;">
+        <source src="/videos/screen-wait.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    `;
+
     fetch("/pick_movie", {
     method: "POST",
     headers: {
@@ -12,7 +22,9 @@ export default class extends Controller {
     })
     .then(response => response.text())
     .then(data => {
-      document.getElementById("display-movie").innerHTML = data;
+      setTimeout(() => {
+        display.innerHTML = data;
+      }, 1000);
     })
   }
 }
