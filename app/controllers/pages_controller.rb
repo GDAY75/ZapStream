@@ -12,12 +12,20 @@ class PagesController < ApplicationController
   end
 
   def pick_movie
+    providers_filter = params[:providers] || []
+
     loop do
       generate_movie
       generate_movie_providers(@movie)
       @movie_providers ||= []
-      break if (@movie_providers & PROVIDERS).any?
+
+      if providers_filter.any?
+        break if (providers_filter & @movie_providers).any?
+      else
+        break if (@movie_providers & PROVIDERS).any?
+      end
     end
+
     generate_movie_details(@movie)
 
     render partial: "movie", locals: {

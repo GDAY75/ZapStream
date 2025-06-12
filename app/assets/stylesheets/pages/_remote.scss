@@ -43,6 +43,29 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  background-color: rgba(81, 28, 41, 0.8);
+  border: 1px solid #511c29;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(219, 50, 77, 0.5);
+  }
+
+  &:active {
+    transform: scale(0.95);
+    box-shadow: none;
+  }
+
+  &.active {
+    background-color: rgba(81, 28, 41, 0);
+    transform: scale(0.95);
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
 }
 
 .button-rectangle {

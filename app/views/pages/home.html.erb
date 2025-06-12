@@ -14,18 +14,45 @@
     <div class="remote-button button-rectangle first-rectangle">Films</div>
     <div class="remote-button button-rectangle second-rectangle">Séries</div>
     <button id="zap-button" data-action="click->remote#zap">
-        <span class="back"></span>
-        <span class="front">ZAP</span>
-      </button>
-    <div class="remote-button button-square" style="background-image: url('<%= image_path('providers/netflix.webp') %>');"></div>
-    <div class="remote-button button-square" style="background-image: url('<%= image_path('providers/primevideo.webp') %>');"></div>
-    <div class="remote-button button-square" style="background-image: url('<%= image_path('providers/disneyplus.webp') %>');"></div>
-    <div class="remote-button button-square" style="background-image: url('<%= image_path('providers/tf1.webp') %>');"></div>
-    <div class="remote-button button-square" style="background-image: url('<%= image_path('providers/canalplus.webp') %>');"></div>
-    <div class="remote-button button-square" style="background-image: url('<%= image_path('providers/crunchyroll.webp') %>');"></div>
-    <div class="remote-button button-square" style="background-image: url('<%= image_path('providers/appletv.webp') %>');"></div>
-    <div class="remote-button button-square" style="background-image: url('<%= image_path('providers/paramount.webp') %>');"></div>
-    <div class="remote-button button-square" style="background-image: url('<%= image_path('providers/max.webp') %>');"></div>
+      <span class="back"></span>
+      <span class="front">ZAP</span>
+    </button>
+    <div class="remote-button button-square"
+      data-action="click->remote#toggleProvider"
+      data-provider-name="Netflix"
+      style="background-image: url('<%= image_path('providers/netflix.webp') %>');"></div>
+    <div class="remote-button button-square"
+      data-action="click->remote#toggleProvider"
+      data-provider-name="Amazon Prime Video"
+      style="background-image: url('<%= image_path('providers/primevideo.webp') %>');"></div>
+    <div class="remote-button button-square"
+      data-action="click->remote#toggleProvider"
+      data-provider-name="Disney Plus"
+      style="background-image: url('<%= image_path('providers/disneyplus.webp') %>');"></div>
+    <div class="remote-button button-square"
+      data-action="click->remote#toggleProvider"
+      data-provider-name="TF1+"
+      style="background-image: url('<%= image_path('providers/tf1.webp') %>');"></div>
+    <div class="remote-button button-square"
+      data-action="click->remote#toggleProvider"
+      data-provider-name="Canal+"
+      style="background-image: url('<%= image_path('providers/canalplus.webp') %>');"></div>
+    <div class="remote-button button-square"
+      data-action="click->remote#toggleProvider"
+      data-provider-name="Crunchyroll"
+      style="background-image: url('<%= image_path('providers/crunchyroll.webp') %>');"></div>
+    <div class="remote-button button-square"
+      data-action="click->remote#toggleProvider"
+      data-provider-name="Apple TV+"
+      style="background-image: url('<%= image_path('providers/appletv.webp') %>');"></div>
+    <div class="remote-button button-square"
+      data-action="click->remote#toggleProvider"
+      data-provider-name="Paramount Plus"
+      style="background-image: url('<%= image_path('providers/paramount.webp') %>');"></div>
+    <div class="remote-button button-square"
+      data-action="click->remote#toggleProvider"
+      data-provider-name="Max"
+      style="background-image: url('<%= image_path('providers/max.webp') %>');"></div>
   </div>
 
 </div>
