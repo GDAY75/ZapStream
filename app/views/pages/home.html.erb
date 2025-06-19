@@ -3,6 +3,7 @@
   <div id="monitor-container">
     <div id="monitor">
       <div id="monitor-screen">
+        <div class="shutdown-flash"></div>
         <div class="movie-container" id="display-movie">
         </div>
       </div>
@@ -10,7 +11,7 @@
   </div>
 
   <div class="remote-container" data-controller="remote">
-    <div id="off-button">&#x23FB;</div>
+    <div id="off-button" data-action="click->remote#togglePower">&#x23FB;</div>
     <div class="remote-button button-rectangle first-rectangle">Films</div>
     <div class="remote-button button-rectangle second-rectangle">Séries</div>
     <button id="zap-button" data-action="click->remote#zap">

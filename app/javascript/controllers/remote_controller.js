@@ -1,18 +1,34 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="remote"
 export default class extends Controller {
+  static targets = [];
 
-  toggleProvider(event) {
-    const button = event.currentTarget;
-    button.classList.toggle("active");
+  connect() {
+    this.poweredOn = true;
   }
 
-
-  zap() {
+  togglePower() {
+    const monitorContainer = document.getElementById("monitor-container");
+    const monitorScreen = document.getElementById("monitor-screen");
     const display = document.getElementById("display-movie");
 
-    // vidéo loading
+    this.poweredOn = !this.poweredOn;
+
+    if (!this.poweredOn) {
+      monitorContainer.classList.add("off");
+      monitorScreen.classList.add("power-off"); // 💥 Ajout ici pour lancer l'animation
+      display.innerHTML = "";
+    } else {
+      monitorContainer.classList.remove("off");
+      monitorScreen.classList.remove("power-off"); // 🔄 Enlève l'animation au rallumage
+    }
+  }
+
+  zap() {
+    if (!this.poweredOn) return; // Ne fait rien si la télé est éteinte
+
+    const display = document.getElementById("display-movie");
+
     display.innerHTML = `
       <video autoplay muted loop style="width: 100%;">
         <source src="/videos/screen-wait.mp4" type="video/mp4">
@@ -39,4 +55,9 @@ export default class extends Controller {
     });
   }
 
+  toggleProvider(event) {
+    if (!this.poweredOn) return;
+    const button = event.currentTarget;
+    button.classList.toggle("active");
+  }
 }
