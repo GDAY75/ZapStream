@@ -27,14 +27,24 @@ export default class extends Controller {
   zap() {
     if (!this.poweredOn) return; // Ne fait rien si la télé est éteinte
 
+    const screen = document.getElementById("monitor-screen");
     const display = document.getElementById("display-movie");
 
-    display.innerHTML = `
-      <video autoplay muted loop style="width: 100%;">
-        <source src="/videos/screen-wait.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    `;
+    // Ajoute une vidéo dans monitor-screen (mais en dehors de #display-movie)
+    const loaderVideo = document.createElement("video");
+    loaderVideo.src = "/videos/screen-wait3.mp4";
+    loaderVideo.autoplay = true;
+    loaderVideo.muted = true;
+    loaderVideo.loop = true;
+    loaderVideo.style.position = "absolute";
+    loaderVideo.style.top = 0;
+    loaderVideo.style.left = 0;
+    loaderVideo.style.width = "100%";
+    loaderVideo.style.height = "100%";
+    loaderVideo.style.objectFit = "cover";
+    loaderVideo.classList.add("loading-video");
+
+    screen.appendChild(loaderVideo);
 
     const activeButtons = this.element.querySelectorAll(".button-square.active");
     const selectedProviders = Array.from(activeButtons).map(btn => btn.dataset.providerName);
@@ -50,6 +60,10 @@ export default class extends Controller {
     .then(response => response.text())
     .then(data => {
       setTimeout(() => {
+        // Retire la vidéo de loading
+        loaderVideo.remove();
+
+        // Injecte le contenu dans display-movie
         display.innerHTML = data;
       }, 1000);
     });
