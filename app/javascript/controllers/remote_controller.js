@@ -71,7 +71,13 @@ export default class extends Controller {
 
   toggleProvider(event) {
     if (!this.poweredOn) return;
-    const button = event.currentTarget;
-    button.classList.toggle("active");
+    const providerButton = event.currentTarget;
+    providerButton.classList.toggle("active");
+  }
+
+  toggleMedia(event) {
+    if (!this.poweredOn) return;
+    const mediaButton = event.currentTarget;
+    mediaButton.classList.toggle("active")
   }
 }

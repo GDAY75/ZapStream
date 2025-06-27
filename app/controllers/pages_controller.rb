@@ -7,10 +7,6 @@ class PagesController < ApplicationController
   def home
   end
 
-  def movie_details
-    generate_movie_credits(@movie)
-  end
-
   def pick_movie
     providers_filter = params[:providers] || []
 
@@ -42,7 +38,43 @@ class PagesController < ApplicationController
     }
   end
 
+  def pick_serie
+    providers_filter = params[:providers] || []
+
+    loop do
+      generate_serie
+      generate_serie_providers(@serie)
+      @serie_providers ||= []
+
+      if providers_filter.any?
+        break if (providers_filter & @serie_providers).any?
+      else
+        break if (@serie_providers & PROVIDERS).any?
+      end
+    end
+  end
+
+  def movie_details
+    generate_movie_credits(@movie)
+  end
+
   private
+
+  def generate_movie
+    url = "https://api.themoviedb.org/3/movie/top_rated?api_key=#{ENV['TMDB_KEY']}&region=FR&language=fr-FR&page=#{rand(1..500)}"
+    response = JSON.parse(URI.open(url).read)
+
+    if response["results"].present?
+      movies = response["results"]
+      @movie = movies.sample
+      @movie_title = @movie['title']
+      @movie_summary = @movie['overview']
+      @movie_release_date = @movie['release_date'].first(4)
+      @movie_poster_url = "https://image.tmdb.org/t/p/w300#{@movie['poster_path']}"
+    end
+
+    return @movie
+  end
 
   def generate_serie
     url = "https://api.themoviedb.org/3/tv/top_rated?api_key=#{ENV['TMDB_KEY']}&region=FR&language=fr-FR&page=#{rand(1..500)}"
@@ -59,22 +91,6 @@ class PagesController < ApplicationController
     end
 
     return @serie
-  end
-
-  def generate_movie
-    url = "https://api.themoviedb.org/3/movie/top_rated?api_key=#{ENV['TMDB_KEY']}&region=FR&language=fr-FR&page=#{rand(1..500)}"
-    response = JSON.parse(URI.open(url).read)
-
-    if response["results"].present?
-      movies = response["results"]
-      @movie = movies.sample
-      @movie_title = @movie['title']
-      @movie_summary = @movie['overview']
-      @movie_release_date = @movie['release_date'].first(4)
-      @movie_poster_url = "https://image.tmdb.org/t/p/w300#{@movie['poster_path']}"
-    end
-
-    return @movie
   end
 
   def generate_movie_details(movie)
@@ -102,8 +118,18 @@ class PagesController < ApplicationController
 
     if response["results"].present? && response["results"]["FR"].present? && response["results"]["FR"]["flatrate"].present?
       movie_providers = response["results"]["FR"]["flatrate"]
-
       @movie_providers = movie_providers.map { |provider| provider["provider_name"] }
+    end
+  end
+
+  def generate_serie_providers(serie)
+    serie_id = serie["id"]
+    url = "https://api.themoviedb.org/3/tv/{serie_id}/watch/providers?api_key=#{ENV['TMDB_KEY']}"
+    response = JSON.parse(URI.open(url).read)
+
+    if response["results"].present? && response["results"]["FR"].present? && response["results"]["FR"]["flatrate"].present?
+      serie_providers = response["results"]["FR"]["flatrate"]
+      @serie_providers = serie_providers.map { |provider| provider["provider_name"] }
     end
   end
 
