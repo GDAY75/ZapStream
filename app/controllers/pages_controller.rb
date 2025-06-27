@@ -44,6 +44,23 @@ class PagesController < ApplicationController
 
   private
 
+  def generate_serie
+    url = "https://api.themoviedb.org/3/tv/top_rated?api_key=#{ENV['TMDB_KEY']}&region=FR&language=fr-FR&page=#{rand(1..500)}"
+    response = JSON.parse(URI.open(url).read)
+
+    if response["results"].present?
+      series = response["results"]
+      @serie = series.sample
+      @serie_title = @serie['name']
+      @serie_summary = @serie['overview']
+      @serie_release_date = @serie['first_air_date'].first(4)
+      @serie_language = @serie['original_language']
+      @serie_poster_url = "https://image.tmdb.org/t/p/w300#{@serie['poster_path']}"
+    end
+
+    return @serie
+  end
+
   def generate_movie
     url = "https://api.themoviedb.org/3/movie/top_rated?api_key=#{ENV['TMDB_KEY']}&region=FR&language=fr-FR&page=#{rand(1..500)}"
     response = JSON.parse(URI.open(url).read)
