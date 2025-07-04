@@ -52,10 +52,23 @@ class PagesController < ApplicationController
         break if (@serie_providers & PROVIDERS).any?
       end
     end
+
+    # generate_serie_details(@serie)
+
+    render partial: "serie", locals: {
+      serie: @serie,
+      serie_title: @serie_title,
+      serie_summary: @serie_summary,
+      serie_poster_url: @serie_poster_url,
+      serie_providers: @serie_providers
+    }
   end
 
-  def movie_details
+  def movie_page
     generate_movie_credits(@movie)
+  end
+
+  def serie_page
   end
 
   private
@@ -111,6 +124,10 @@ class PagesController < ApplicationController
     end
   end
 
+  # def generate_serie_details(serie)
+  #   serie_id = serie["id"]
+  # end
+
   def generate_movie_providers(movie)
     movie_id = movie["id"]
     url = "https://api.themoviedb.org/3/movie/#{movie_id}/watch/providers?api_key=#{ENV['TMDB_KEY']}"
@@ -124,7 +141,7 @@ class PagesController < ApplicationController
 
   def generate_serie_providers(serie)
     serie_id = serie["id"]
-    url = "https://api.themoviedb.org/3/tv/{serie_id}/watch/providers?api_key=#{ENV['TMDB_KEY']}"
+    url = "https://api.themoviedb.org/3/tv/#{serie_id}/watch/providers?api_key=#{ENV['TMDB_KEY']}"
     response = JSON.parse(URI.open(url).read)
 
     if response["results"].present? && response["results"]["FR"].present? && response["results"]["FR"]["flatrate"].present?

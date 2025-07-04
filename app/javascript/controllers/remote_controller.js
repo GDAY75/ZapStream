@@ -46,10 +46,22 @@ export default class extends Controller {
 
     screen.appendChild(loaderVideo);
 
+    // Providers
     const activeButtons = this.element.querySelectorAll(".button-square.active");
     const selectedProviders = Array.from(activeButtons).map(btn => btn.dataset.providerName);
 
-    fetch("/pick_movie", {
+    // Media
+    const activeMediaButtons = this.element.querySelectorAll(".button-rectangle.active");
+    let endpoint = null;
+    if (activeMediaButtons.length === 1) {
+      const mediaName = activeMediaButtons[0].dataset.mediaName;
+      endpoint = mediaName === "movies" ? "/pick_movie" : "/pick_serie";
+    } else {
+      // None or both selected: pick randomly
+      endpoint = Math.random() < 0.5 ? "/pick_movie" : "/pick_serie";
+    }
+
+    fetch(endpoint, {
       method: "POST",
       headers: {
         "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
@@ -60,10 +72,7 @@ export default class extends Controller {
     .then(response => response.text())
     .then(data => {
       setTimeout(() => {
-        // Retire la vidéo de loading
         loaderVideo.remove();
-
-        // Injecte le contenu dans display-movie
         display.innerHTML = data;
       }, 1000);
     });
@@ -78,6 +87,6 @@ export default class extends Controller {
   toggleMedia(event) {
     if (!this.poweredOn) return;
     const mediaButton = event.currentTarget;
-    mediaButton.classList.toggle("active")
+    mediaButton.classList.toggle("active");
   }
 }
