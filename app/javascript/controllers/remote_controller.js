@@ -16,11 +16,11 @@ export default class extends Controller {
 
     if (!this.poweredOn) {
       monitorContainer.classList.add("off");
-      monitorScreen.classList.add("power-off"); // 💥 Ajout ici pour lancer l'animation
+      monitorScreen.classList.add("power-off"); // Ajout ici pour lancer l'animation
       display.innerHTML = "";
     } else {
       monitorContainer.classList.remove("off");
-      monitorScreen.classList.remove("power-off"); // 🔄 Enlève l'animation au rallumage
+      monitorScreen.classList.remove("power-off"); // Enlève l'animation au rallumage
     }
   }
 
@@ -46,24 +46,37 @@ export default class extends Controller {
 
     screen.appendChild(loaderVideo);
 
+    // Providers
     const activeButtons = this.element.querySelectorAll(".button-square.active");
     const selectedProviders = Array.from(activeButtons).map(btn => btn.dataset.providerName);
 
-    fetch("/pick_movie", {
+    // Media
+    const activeMediaButtons = this.element.querySelectorAll(".button-rectangle.active");
+    const selectedMedia = Array.from(activeMediaButtons).map(btn => btn.dataset.mediaName);
+
+    // Decide endpoint: if exactly one media, respect it; otherwise random
+    let endpoint = null;
+    if (selectedMedia.length === 1) {
+      endpoint = selectedMedia[0] === "movies" ? "/pick_movie" : "/pick_serie";
+    } else {
+      endpoint = Math.random() < 0.5 ? "/pick_movie" : "/pick_serie";
+    }
+
+    fetch(endpoint, {
       method: "POST",
       headers: {
         "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ providers: selectedProviders })
+      body: JSON.stringify({
+        providers: selectedProviders,
+        media: selectedMedia
+      })
     })
     .then(response => response.text())
     .then(data => {
       setTimeout(() => {
-        // Retire la vidéo de loading
         loaderVideo.remove();
-
-        // Injecte le contenu dans display-movie
         display.innerHTML = data;
       }, 1000);
     });
@@ -71,7 +84,13 @@ export default class extends Controller {
 
   toggleProvider(event) {
     if (!this.poweredOn) return;
-    const button = event.currentTarget;
-    button.classList.toggle("active");
+    const providerButton = event.currentTarget;
+    providerButton.classList.toggle("active");
+  }
+
+  toggleMedia(event) {
+    if (!this.poweredOn) return;
+    const mediaButton = event.currentTarget;
+    mediaButton.classList.toggle("active");
   }
 }

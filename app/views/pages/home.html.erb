@@ -12,12 +12,23 @@
 
   <div class="remote-container" data-controller="remote">
     <div id="off-button" data-action="click->remote#togglePower">&#x23FB;</div>
-    <div class="remote-button button-rectangle first-rectangle">Films</div>
-    <div class="remote-button button-rectangle second-rectangle">Séries</div>
+
+    <div class="remote-button button-rectangle first-rectangle"
+      data-action="click->remote#toggleMedia"
+      data-media-name="movies">
+      Films
+    </div>
+    <div class="remote-button button-rectangle second-rectangle"
+      data-action="click->remote#toggleMedia"
+      data-media-name="series">
+      Séries
+    </div>
+
     <button id="zap-button" data-action="click->remote#zap">
       <span class="back"></span>
       <span class="front">ZAP</span>
     </button>
+
     <div class="remote-button button-square"
       data-action="click->remote#toggleProvider"
       data-provider-name="Netflix"
