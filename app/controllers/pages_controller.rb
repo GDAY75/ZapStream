@@ -94,6 +94,7 @@ class PagesController < ApplicationController
   end
 
   def serie_page
+    generate_serie_credits(@serie)
   end
 
   private
@@ -203,7 +204,20 @@ class PagesController < ApplicationController
       director = response["crew"].find { |person| person["job"] == "Director" }
       @movie_director = director ? director["name"] : "Inconnu"
       @movie_director_photo_url = "https://image.tmdb.org/t/p/w154#{director["profile_path"]}"
-      @actors = response["cast"]
+      @movie_actors = response["cast"]
+    end
+  end
+
+  def generate_serie_credits(serie)
+    serie_id = params["serie"]["id"]
+    url = "https://api.themoviedb.org/3/tv/#{serie_id}/credits?api_key=#{ENV['TMDB_KEY']}"
+    response = JSON.parse(URI.open(url).read)
+
+    if response["crew"].present?
+      director = response["crew"].find { |person| person["job"] == "Director" }
+      @serie_director = director ? director["name"] : "Inconnu"
+      # @serie_director_photo_url = "https://image.tmdb.org/t/p/w154#{director["profile_path"]}"
+      @serie_actors = response["cast"]
     end
   end
 end
