@@ -16,11 +16,11 @@ export default class extends Controller {
 
     if (!this.poweredOn) {
       monitorContainer.classList.add("off");
-      monitorScreen.classList.add("power-off"); // 💥 Ajout ici pour lancer l'animation
+      monitorScreen.classList.add("power-off"); // Ajout ici pour lancer l'animation
       display.innerHTML = "";
     } else {
       monitorContainer.classList.remove("off");
-      monitorScreen.classList.remove("power-off"); // 🔄 Enlève l'animation au rallumage
+      monitorScreen.classList.remove("power-off"); // Enlève l'animation au rallumage
     }
   }
 
@@ -52,12 +52,13 @@ export default class extends Controller {
 
     // Media
     const activeMediaButtons = this.element.querySelectorAll(".button-rectangle.active");
+    const selectedMedia = Array.from(activeMediaButtons).map(btn => btn.dataset.mediaName);
+
+    // Decide endpoint: if exactly one media, respect it; otherwise random
     let endpoint = null;
-    if (activeMediaButtons.length === 1) {
-      const mediaName = activeMediaButtons[0].dataset.mediaName;
-      endpoint = mediaName === "movies" ? "/pick_movie" : "/pick_serie";
+    if (selectedMedia.length === 1) {
+      endpoint = selectedMedia[0] === "movies" ? "/pick_movie" : "/pick_serie";
     } else {
-      // None or both selected: pick randomly
       endpoint = Math.random() < 0.5 ? "/pick_movie" : "/pick_serie";
     }
 
@@ -67,7 +68,10 @@ export default class extends Controller {
         "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ providers: selectedProviders })
+      body: JSON.stringify({
+        providers: selectedProviders,
+        media: selectedMedia
+      })
     })
     .then(response => response.text())
     .then(data => {
