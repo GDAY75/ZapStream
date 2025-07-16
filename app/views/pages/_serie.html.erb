@@ -4,12 +4,18 @@
       id: serie["id"],
       serie: serie,
       providers: serie_providers,
+      categories: serie_categories,
     ) do %>
     <%= image_tag serie_poster_url, class:"movie-poster"%>
     <% end %>
   </div>
 
   <div class="movie-details">
+
+      <div>
+        <h2><%= serie_title %></h2>
+      </div>
+
       <div>
         <p class="text-red"><%= serie_summary.split(".").first %>[...]</p>
       </div>
@@ -22,7 +28,7 @@
               "Apple TV+" => ["providers/appletv.webp", "Apple TV", "https://tv.apple.com/fr"],
               "Amazon Prime Video" => ["providers/primevideo.webp", "Amazon Prime Video", "https://www.primevideo.com"],
               "Canal+" => ["providers/canalplus.webp", "Canal+", "https://www.canalplus.com/"],
-              "Max" => ["providers/max.webp", "Max", "https://www.max.com/fr/fr"],
+              "HBO Max" => ["providers/max.webp", "HBO Max", "https://www.hbomax.com/fr/fr"],
               "TF1+" => ["providers/tf1.webp", "TF1+", "https://www.tf1.fr"],
               "Paramount Plus" => ["providers/paramount.webp", "Paramount Plus", "https://www.paramountplus.com/fr"],
               "Crunchyroll" => ["providers/crunchyroll.webp", "Crunchyroll", "https://www.crunchyroll.com/fr"]

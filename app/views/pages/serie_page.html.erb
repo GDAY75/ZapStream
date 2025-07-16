@@ -1,7 +1,75 @@
-<h1>
-  <%= params["serie"]["title"] %>
-</h1>
+<div class="detail-show-container">
 
-<p>
-  <%= params["serie"]['overview'] %>
-</p>
+  <div class="detail-header">
+    <h1><%= params["serie"]["name"] %></h1>
+  </div>
+
+  <div class="detail-content">
+
+    <!-- Affiche -->
+    <div class="detail-left">
+      <%= image_tag "https://image.tmdb.org/t/p/w300#{params["serie"]['poster_path']}" %>
+    </div>
+
+    <!-- Détails -->
+    <div class="detail-right">
+      <p class="detail-overview"><%= params["serie"]['overview'] %></p>
+      <p class="release-year">📅 <%= params["serie"]['first_air_date'].first(4) %></p>
+
+      <div class="casting">
+        👤 Acteurs :
+        <% if @serie_actors[0].present? %>
+          <div class="actor">
+            <%= image_tag "https://image.tmdb.org/t/p/w154#{@serie_actors[0]["profile_path"]}" %>
+            <p><%= @serie_actors[0]["name"] %></p>
+          </div>
+          <% if @serie_actors[1].present? %>
+            <div class="actor">
+              <%= image_tag "https://image.tmdb.org/t/p/w154#{@serie_actors[1]["profile_path"]}" %>
+              <p><%= @serie_actors[1]["name"] %></p>
+            </div>
+          <% end %>
+          <% if @serie_actors[2].present? %>
+            <div class="actor">
+              <%= image_tag "https://image.tmdb.org/t/p/w154#{@serie_actors[2]["profile_path"]}" %>
+              <p><%= @serie_actors[2]["name"] %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="categories">
+        🏷️ Catégories :
+        <% params["categories"].each do |category| %>
+          <span class="tag"><%= category['name'] %></span>
+        <% end %>
+      </div>
+
+      <% if params["providers"].present? %>
+        <div class="platforms">
+          📺 Disponible sur :
+          <% params["providers"].each do |provider| %>
+            <% logo = {
+              "Disney Plus" => ["providers/disneyplus.webp", "Disney Plus", "https://www.disneyplus.com/fr-fr"],
+              "Netflix" => ["providers/netflix.webp", "Netflix", "https://www.netflix.com"],
+              "Apple TV+" => ["providers/appletv.webp", "Apple TV", "https://tv.apple.com/fr"],
+              "Amazon Prime Video" => ["providers/primevideo.webp", "Amazon Prime Video", "https://www.primevideo.com"],
+              "Canal+" => ["providers/canalplus.webp", "Canal+", "https://www.canalplus.com/"],
+              "HBO Max" => ["providers/max.webp", "HBO Max", "https://www.hbomax.com/fr/fr"],
+              "TF1+" => ["providers/tf1.webp", "TF1+", "https://www.tf1.fr"],
+              "Paramount Plus" => ["providers/paramount.webp", "Paramount Plus", "https://www.paramountplus.com/fr"],
+              "Crunchyroll" => ["providers/crunchyroll.webp", "Crunchyroll", "https://www.crunchyroll.com/fr"]
+            }[provider] %>
+
+            <% if logo %>
+              <%= link_to logo[2], target: "_blank" do %>
+                <%= image_tag logo[0], alt: logo[1], class: "movie-provider" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
