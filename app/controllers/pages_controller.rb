@@ -2,7 +2,7 @@ require "open-uri"
 
 class PagesController < ApplicationController
 
-  PROVIDERS = ["Netflix", "Disney Plus", "Apple TV+", "Amazon Prime Video", "Canal+", "Max", "TF1+", "Paramount Plus", "Crunchyroll"]
+  PROVIDERS = ["Netflix", "Disney Plus", "Apple TV+", "Amazon Prime Video", "Canal+", "HBO Max", "TF1+", "Paramount Plus", "Crunchyroll"]
 
   def home
   end
@@ -44,7 +44,7 @@ class PagesController < ApplicationController
     selected_media = params[:media] || [] # Expecting array like ["series"] or ["movies", "series"]
 
     attempts = 0
-    max_attempts = 10
+    max_attempts = 1000
 
     begin
       loop do
@@ -120,7 +120,7 @@ class PagesController < ApplicationController
 
     # Try multiple times if the response is empty
     3.times do
-      url = "https://api.themoviedb.org/3/tv/top_rated?api_key=#{ENV['TMDB_KEY']}&region=FR&language=fr-FR&page=#{rand(1..500)}"
+      url = "https://api.themoviedb.org/3/tv/popular?api_key=#{ENV['TMDB_KEY']}&region=FR&language=fr-FR&page=#{rand(1..500)}"
       response = JSON.parse(URI.open(url).read)
 
       if response["results"].present?
