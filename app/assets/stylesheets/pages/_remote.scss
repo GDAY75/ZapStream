@@ -1,58 +1,104 @@
 .remote-container {
-  float: left;
-  margin-left: 32px;
   background-color: #070D0D;
   box-shadow: 5px 10px 5px rgb(0, 0, 0);
   border-radius: 5px;
   border: 2px solid rgb(5, 5, 5);
-  width: 240px;
-  height: 640px;
-  padding: 16px 10px;
+  width: clamp(180px, 20vw, 260px); // adaptatif
+  min-width: 150px;
+  aspect-ratio: 3 / 8;
+  padding: 1.2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 60px repeat(1, 50px) 220px repeat(3, 50px);
-  grid-gap: 16px;
+  grid-template-rows:
+    auto    // bouton OFF
+    auto    // Films & Séries
+    auto    // ZAP
+    repeat(3, auto);
+  gap: 0.6rem;
   justify-items: center;
   align-items: center;
   transform: rotate(-6deg);
+  font-size: clamp(0.6rem, 1.2vw, 1rem); // rend tout scalable
 }
 
-.remote-button {
+
+#off-button {
+  background-color: #a62639;
+  border-radius: 50%;
+  width: 1.8em;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  margin-left: 0.5em;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  align-self: flex-start;
+  margin-left: 0;
+  margin-top: 0;
+  grid-column: 1 / span 3;
+  grid-row: 1;
+  justify-self: start;
+}
+
+#off-button:active {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
+  transform: translateY(2px);
+}
+
+.button-rectangle {
+  flex: 1;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
   background-color: rgba(81, 28, 41, 0.8);
   border-radius: 4px;
-  padding: 5px;
-  box-shadow: 0 1px 2px 0 lighten(black, 50%);
-  transition: background-color 0.3s ease, transform 0.1s ease;
-  background-blend-mode: multiply;
+  border: 1px solid #511c29;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s;
 
   &:hover {
+    background-color: rgba(81, 28, 41, 0.6);
     cursor: pointer;
-    background-color: rgba(81, 28, 41, 0.2);
   }
 
   &:active {
-    transform: scale(0.97);
+    transform: scale(0.96);
     box-shadow: none;
-    background-color: rgba(81, 28, 41, 0);
   }
 }
 
+
+.remote-media-buttons {
+  grid-column: 1 / span 3;
+  grid-row: 2;
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 10%;
+}
+
 .button-square {
-  width: 50px;
-  height: 50px;
+  width: 100%; // pour qu’ils s’adaptent à la grille
+  min-width: 30px;
+  aspect-ratio: 1; // carré
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
-  background-color: rgba(81, 28, 41, 0.8);
   border: 1px solid #511c29;
+  transition: all 0.2s ease;
+  background-color: rgba(0, 0, 0, 0.5); // couche sombre par défaut
+  background-blend-mode: multiply;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
   &:hover {
-    cursor: pointer;
     transform: scale(1.05);
     box-shadow: 0 0 8px rgba(219, 50, 77, 0.5);
+    background-color: rgba(255, 255, 255, 0.2); // plus clair
+    cursor: pointer;
   }
 
   &:active {
@@ -61,65 +107,45 @@
   }
 
   &.active {
-    background-color: rgba(81, 28, 41, 0);
-    transform: scale(0.95);
-    box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.2); // plus clair
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
   }
 }
 
-.button-rectangle {
-  width: 60px;
-  height: 32px;
-}
 
-#off-button {
-  background-color: #a62639;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+.platform-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // 3 boutons par ligne
+  gap: 12px; // Espacement égal horizontal + vertical
+  width: 100%;
   grid-column: span 3;
-  grid-row: 1;
-  justify-self: left;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-  margin-left: 10px;
-  cursor: pointer;
-  transition: all 0.1s ease;
-  transform: translateY(0);
-}
-
-#off-button:active {
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
-  transform: translateY(2px);
+  margin-top: 15%;
 }
 
 #zap-button {
-  background-color: #db324d;
+  width: 80%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  grid-column: 1 / span 3;
+  grid-row: 3;
+  font-size: 2.5em;
+  font-weight: 600;
   color: #511c29;
-  width: 160px;
-  height: 160px;
+  background-color: #db324d;
   border: 2px solid #511c29;
   box-shadow: 0 1px 2px 0 lighten(black, 50%);
-  border-radius: 50%;
-  grid-column: span 3;
-  justify-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Special Elite", system-ui, serif;
-  font-size: 54px;
-  font-weight: 600;
-  touch-action: manipulation;
-  border-radius: 100%;
-  transition: 0.3s;
   position: relative;
+  touch-action: manipulation;
+  transition: 0.3s;
+  margin-top: 15%;
 
   &:hover {
     background-color: #a62639;
-    cursor: pointer;
     color: rgba(81, 28, 41, 0.8);
   }
 
@@ -128,19 +154,14 @@
     transform: translateY(1px);
   }
 
-  &:active .front {
-  transform: translateY(0%);
-  box-shadow: 0 0;
-  }
-
   .back {
-  background: rgb(166, 38, 57);
-  border-radius: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+    background: rgb(166, 38, 57);
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .front {
