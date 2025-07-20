@@ -1,0 +1,12 @@
+<div>
+  <% if providers.present? %>
+    <% providers.each do |provider| %>
+      <% logo = provider_logos[provider] %>
+      <% if logo %>
+        <%= link_to logo[2], target: "_blank" do %>
+          <%= image_tag logo[0], alt: logo[1], class: "movie-provider" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

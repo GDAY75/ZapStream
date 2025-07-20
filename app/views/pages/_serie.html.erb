@@ -12,38 +12,14 @@
 
   <div class="movie-details">
 
-      <div>
-        <h2><%= serie_title %></h2>
-      </div>
+    <div>
+      <h2><%= serie_title %></h2>
+    </div>
 
-      <div>
-        <p class="text-red"><%= serie_summary.split(".").first %>[...]</p>
-      </div>
+    <div>
+      <p class="text-red"><%= serie_summary.split(".").first %>[...]</p>
+    </div>
 
-        <div>
-          <% if serie_providers.present? %>
-            <% providers_logos = {
-              "Disney Plus" => ["providers/disneyplus.webp", "Disney Plus", "https://www.disneyplus.com/fr-fr"],
-              "Netflix" => ["providers/netflix.webp", "Netflix", "https://www.netflix.com"],
-              "Apple TV+" => ["providers/appletv.webp", "Apple TV", "https://tv.apple.com/fr"],
-              "Amazon Prime Video" => ["providers/primevideo.webp", "Amazon Prime Video", "https://www.primevideo.com"],
-              "Canal+" => ["providers/canalplus.webp", "Canal+", "https://www.canalplus.com/"],
-              "HBO Max" => ["providers/max.webp", "HBO Max", "https://www.hbomax.com/fr/fr"],
-              "TF1+" => ["providers/tf1.webp", "TF1+", "https://www.tf1.fr"],
-              "Paramount Plus" => ["providers/paramount.webp", "Paramount Plus", "https://www.paramountplus.com/fr"],
-              "Crunchyroll" => ["providers/crunchyroll.webp", "Crunchyroll", "https://www.crunchyroll.com/fr"]
-            } %>
-
-            <% serie_providers.each do |provider| %>
-              <% logo = providers_logos[provider] %>
-              <% if logo %>
-                <%= link_to logo[2], target: "_blank" do %>
-                  <%= image_tag logo[0], alt: logo[1], class:"movie-provider" %>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+    <%= render "shared/providers", providers: serie_providers %>
   </div>
 <% end %>
