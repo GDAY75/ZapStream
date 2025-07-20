@@ -6,7 +6,11 @@
       providers: serie_providers,
       categories: serie_categories,
     ) do %>
-    <%= image_tag serie_poster_url, class:"movie-poster"%>
+      <% if %>
+        <%= image_tag serie_poster_url, class:"movie-poster" %>
+      <% else %>
+        <%= image_tag "default_media_poster.jpg", class:"movie-poster" %>
+      <% end %>
     <% end %>
   </div>
 

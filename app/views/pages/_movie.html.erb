@@ -9,7 +9,11 @@
       hours: hours,
       min: min,
     ) do %>
-    <%= image_tag movie_poster_url, class:"movie-poster"%>
+      <% if movie_poster_url.present? %>
+        <%= image_tag movie_poster_url, class:"movie-poster" %>
+      <% else %>
+        <%= image_tag "default_media_poster.jpg", class:"movie-poster" %>
+      <% end %>
     <% end %>
   </div>
 
