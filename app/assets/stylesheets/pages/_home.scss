@@ -2,4 +2,9 @@
   display: flex;
   justify-content: space-around;
   margin-right: 64px;
+
+  @media (max-width: 768px) {
+    flex-direction: column; // en mode mobile, tout s'empile
+    align-items: center; // centre la télécommande sous la télé
+  }
 }

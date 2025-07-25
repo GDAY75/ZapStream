@@ -1,6 +1,9 @@
 #monitor-container {
-  width: 1024px;
+  width: 100%;
+  max-width: 1024px;
+  flex: 1;
   aspect-ratio: 16/9;
+  margin-bottom: 32px;
 }
 
 #monitor {
@@ -80,27 +83,78 @@
   justify-content: center;
   gap: 30px;
   width: auto;
-  padding: 32px;
+  height: 100%;
   font-weight: 900;
   color: #511c29;
-  align-items: flex-start;
+  align-items: center;
+  margin-block: 10%;
 }
 
 .movie-poster {
   border-radius: 10% / 50%;
-  max-height: 440px;
+  max-width: 100%;
+  height: auto;
   width: auto;
+  object-fit: contain; // garde le ratio sans couper
+  display: block;
+  margin: 0 auto;
 }
 
 .movie-details {
+  padding-block: 2%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-self: flex-start;
+  h2 {
+    font-size: 3vw;
+    font-weight: bolder;
+  }
+}
+
+.summary-box {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.movie-summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4em;
+  max-height: calc(1.4em * 3);
 }
 
 .movie-provider {
-  width: 50px;
+  width: 60px;
   border-radius: 10% / 50%;
+  margin-bottom: 2%;
+}
+
+@media (max-width: 768px) {
+
+  .movie-provider{
+    width: 25%;
+  }
+
+  .text-grey{
+    font-size: 3vw;
+  }
+
+  .movie-summary{
+    font-size: 2.5vw;
+  }
+}
+
+@media (max-width: 1256px) {
+
+  .movie-poster{
+    max-width: 80%;
+  }
+
 }
 
 #monitor-container.off {

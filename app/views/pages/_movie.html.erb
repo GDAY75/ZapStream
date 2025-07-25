@@ -18,9 +18,9 @@
   </div>
 
   <div class="movie-details">
+    <h2><%= movie_title %></h2>
+    <%= render "shared/providers", providers: movie_providers %>
     <div>
-      <h2><%= movie_title %></h2>
-
       <% if movie_length >= 60 %>
         <p class="text-grey">
           <%= hours %> h
@@ -31,10 +31,10 @@
       <% end %>
     </div>
 
-    <div>
-      <p class="text-red"><%= movie_summary.split(".").first %>[...]</p>
+    <div class="summary-box">
+      <p class="movie-summary"><%= movie_summary %></p>
     </div>
 
-    <%= render "shared/providers", providers: movie_providers %>
+
   </div>
 <% end %>

@@ -19,11 +19,11 @@
     <div>
       <h2><%= serie_title %></h2>
     </div>
+    <%= render "shared/providers", providers: serie_providers %>
 
-    <div>
-      <p class="text-red"><%= serie_summary.split(".").first %>[...]</p>
+    <div class="summary-box">
+      <p class="movie-summary"><%= serie_summary %></p>
     </div>
 
-    <%= render "shared/providers", providers: serie_providers %>
   </div>
 <% end %>
