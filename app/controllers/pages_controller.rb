@@ -90,11 +90,48 @@ class PagesController < ApplicationController
   end
 
   def movie_page
-    generate_movie_credits(@movie)
+    movie_id = params[:id]
+
+    begin
+      # Fetch base movie info
+      url = "https://api.themoviedb.org/3/movie/#{movie_id}?api_key=#{ENV['TMDB_KEY']}&language=fr-FR"
+      response = URI.open(url).read
+      @movie = JSON.parse(response)
+
+      if @movie.present?
+        generate_movie_details(@movie)
+        generate_movie_providers(@movie)
+        generate_movie_credits(@movie)
+      else
+        raise "Movie not found"
+      end
+
+    rescue => e
+      Rails.logger.error("Failed to fetch movie: #{e.message}")
+      redirect_to root_path, alert: "Film introuvable ou erreur de chargement."
+    end
   end
 
   def serie_page
-    generate_serie_credits(@serie)
+    serie_id = params[:id]
+
+    begin
+      url = "https://api.themoviedb.org/3/tv/#{serie_id}?api_key=#{ENV['TMDB_KEY']}&language=fr-FR"
+      response = URI.open(url).read
+      @serie = JSON.parse(response)
+
+      if @serie.present?
+        generate_serie_details(@serie)
+        generate_serie_providers(@serie)
+        generate_serie_credits(@serie)
+      else
+        raise "Serie not found"
+      end
+
+    rescue => e
+      Rails.logger.error("Failed to fetch tv serie: #{e.message}")
+      redirect_to root_path, alert: "Série introuvable ou erreur de chargement."
+    end
   end
 
   private
@@ -143,6 +180,8 @@ class PagesController < ApplicationController
 
   def generate_movie_details(movie)
     movie_id = movie["id"]
+    return if movie_id.blank?
+
     url = "https://api.themoviedb.org/3/movie/#{movie_id}?api_key=#{ENV['TMDB_KEY']}&language=fr-FR"
     response = JSON.parse(URI.open(url).read)
 
@@ -161,6 +200,8 @@ class PagesController < ApplicationController
 
   def generate_serie_details(serie)
     serie_id = serie["id"]
+    return if serie_id.blank?
+
     url = "https://api.themoviedb.org/3/tv/#{serie_id}?api_key=#{ENV['TMDB_KEY']}&language=fr-FR"
     response = JSON.parse(URI.open(url).read)
 
@@ -170,8 +211,11 @@ class PagesController < ApplicationController
   end
 
   def generate_movie_providers(movie)
-    @movie_providers = []
     movie_id = movie["id"]
+    return if movie_id.blank?
+
+    @movie_providers = []
+
     url = "https://api.themoviedb.org/3/movie/#{movie_id}/watch/providers?api_key=#{ENV['TMDB_KEY']}"
     response = JSON.parse(URI.open(url).read)
 
@@ -184,8 +228,11 @@ class PagesController < ApplicationController
   def generate_serie_providers(serie)
     raise "No serie given" if serie.nil?
 
-    @serie_providers = []
     serie_id = serie["id"]
+    return if serie_id.blank?
+
+    @serie_providers = []
+    
     url = "https://api.themoviedb.org/3/tv/#{serie_id}/watch/providers?api_key=#{ENV['TMDB_KEY']}"
     response = JSON.parse(URI.open(url).read)
 
@@ -196,7 +243,9 @@ class PagesController < ApplicationController
   end
 
   def generate_movie_credits(movie)
-    movie_id = params["movie"]["id"]
+    movie_id = movie["id"]
+    return if movie_id.blank?
+
     url = "https://api.themoviedb.org/3/movie/#{movie_id}/credits?api_key=#{ENV['TMDB_KEY']}"
     response = JSON.parse(URI.open(url).read)
 
@@ -209,7 +258,9 @@ class PagesController < ApplicationController
   end
 
   def generate_serie_credits(serie)
-    serie_id = params["serie"]["id"]
+    serie_id = serie["id"]
+    return if serie_id.blank?
+
     url = "https://api.themoviedb.org/3/tv/#{serie_id}/credits?api_key=#{ENV['TMDB_KEY']}"
     response = JSON.parse(URI.open(url).read)
 

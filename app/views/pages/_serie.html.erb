@@ -1,11 +1,6 @@
 <% if serie.present? %>
   <div>
-    <%= link_to serie_path(
-      id: serie["id"],
-      serie: serie,
-      providers: serie_providers,
-      categories: serie_categories,
-    ) do %>
+    <%= link_to serie_path(serie["id"]) do %>
       <% if %>
         <%= image_tag serie_poster_url, class:"movie-poster" %>
       <% else %>

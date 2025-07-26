@@ -1,20 +1,20 @@
 <div class="detail-show-container">
 
   <div class="detail-header">
-    <h1><%= params["serie"]["name"] %></h1>
+    <h1><%= @serie["name"] %></h1>
   </div>
 
   <div class="detail-content">
 
     <!-- Affiche -->
     <div class="detail-left">
-      <%= image_tag "https://image.tmdb.org/t/p/w300#{params["serie"]['poster_path']}" %>
+      <%= image_tag "https://image.tmdb.org/t/p/w300#{@serie['poster_path']}" %>
     </div>
 
     <!-- Détails -->
     <div class="detail-right">
-      <p class="detail-overview"><%= params["serie"]['overview'] %></p>
-      <p class="release-year">📅 <%= params["serie"]['first_air_date'].first(4) %></p>
+      <p class="detail-overview"><%= @serie['overview'] %></p>
+      <p class="release-year">📅 <%= @serie['first_air_date'].first(4) %></p>
 
       <div class="casting">
         👤 Acteurs :
@@ -38,17 +38,19 @@
         <% end %>
       </div>
 
-      <div class="categories">
-        🏷️ Catégories :
-        <% params["categories"].each do |category| %>
-          <span class="tag"><%= category['name'] %></span>
-        <% end %>
-      </div>
+      <% if @serie["categories"].present? %>
+        <div class="categories">
+          🏷️ Catégories :
+          <% @serie["categories"].each do |category| %>
+            <span class="tag"><%= category['name'] %></span>
+          <% end %>
+        </div>
+      <% end %>
 
-      <% if params["providers"].present? %>
+      <% if @serie["providers"].present? %>
         <div class="platforms">
           📺 Disponible sur :
-          <% params["providers"].each do |provider| %>
+          <% @serie["providers"].each do |provider| %>
             <% logo = {
               "Disney Plus" => ["providers/disneyplus.webp", "Disney Plus", "https://www.disneyplus.com/fr-fr"],
               "Netflix" => ["providers/netflix.webp", "Netflix", "https://www.netflix.com"],

@@ -1,14 +1,6 @@
 <% if movie.present? %>
   <div>
-    <%= link_to movie_path(
-      id: movie["id"],
-      movie: movie,
-      categories: movie_categories,
-      length: movie_length,
-      provider: movie_providers,
-      hours: hours,
-      min: min,
-    ) do %>
+    <%= link_to movie_path(movie["id"]) do %>
       <% if movie_poster_url.present? %>
         <%= image_tag movie_poster_url, class:"movie-poster" %>
       <% else %>
