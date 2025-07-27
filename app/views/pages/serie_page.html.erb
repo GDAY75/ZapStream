@@ -1,11 +1,9 @@
 <div class="detail-show-container">
-
   <div class="detail-header">
     <h1><%= @serie["name"] %></h1>
   </div>
 
   <div class="detail-content">
-
     <!-- Affiche -->
     <div class="detail-left">
       <%= image_tag "https://image.tmdb.org/t/p/w300#{@serie['poster_path']}" %>
@@ -65,7 +63,7 @@
 
             <% if logo %>
               <%= link_to logo[2], target: "_blank" do %>
-                <%= image_tag logo[0], alt: logo[1], class: "movie-provider" %>
+                <%= image_tag logo[0], alt: logo[1], class: "media-provider" %>
               <% end %>
             <% end %>
           <% end %>

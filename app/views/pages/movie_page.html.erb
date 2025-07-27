@@ -1,11 +1,9 @@
 <div class="detail-show-container">
-
   <div class="detail-header">
     <h1><%= @movie["title"] %></h1>
   </div>
 
   <div class="detail-content">
-
     <!-- Affiche -->
     <div class="detail-left">
       <% if @movie['poster_path'].present? %>
@@ -80,12 +78,11 @@
 
           <% if logo.present? %>
             <%= link_to logo[2], target: "_blank" do %>
-              <%= image_tag logo[0], alt: logo[1], class: "movie-provider" %>
+              <%= image_tag logo[0], alt: logo[1], class: "media-provider" %>
             <% end %>
           <% end %>
         <% end %>
       </div>
     <% end %>
-
   </div>
 </div>

@@ -2,14 +2,14 @@
   <div>
     <%= link_to movie_path(movie["id"]) do %>
       <% if movie_poster_url.present? %>
-        <%= image_tag movie_poster_url, class:"movie-poster" %>
+        <%= image_tag movie_poster_url, class:"media-poster" %>
       <% else %>
-        <%= image_tag "default_media_poster.jpg", class:"movie-poster" %>
+        <%= image_tag "default_media_poster.jpg", class:"media-poster" %>
       <% end %>
     <% end %>
   </div>
 
-  <div class="movie-details">
+  <div class="media-details">
     <h2><%= movie_title %></h2>
     <%= render "shared/providers", providers: movie_providers %>
     <div>
@@ -24,9 +24,7 @@
     </div>
 
     <div class="summary-box">
-      <p class="movie-summary"><%= movie_summary %></p>
+      <p class="media-summary"><%= movie_summary %></p>
     </div>
-
-
   </div>
 <% end %>
