@@ -36,10 +36,10 @@
         <% end %>
       </div>
 
-      <% if @serie["categories"].present? %>
+      <% if @serie["genres"].present? %>
         <div class="categories">
           🏷️ Catégories :
-          <% @serie["categories"].each do |category| %>
+          <% @serie["genres"].each do |category| %>
             <span class="tag"><%= category['name'] %></span>
           <% end %>
         </div>

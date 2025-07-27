@@ -42,9 +42,15 @@ export default class extends Controller {
     loaderVideo.style.width = "100%";
     loaderVideo.style.height = "100%";
     loaderVideo.style.objectFit = "cover";
+    loaderVideo.style.filter = "saturate(80%) contrast(90%)";
     loaderVideo.classList.add("loading-video");
 
+    // Create and append color overlay
+    const overlay = document.createElement("div");
+    overlay.className = "animation-color-overlay";
+
     screen.appendChild(loaderVideo);
+    screen.appendChild(overlay);
 
     // Providers
     const activeButtons = this.element.querySelectorAll(".button-square.active");
@@ -77,6 +83,7 @@ export default class extends Controller {
     .then(data => {
       setTimeout(() => {
         loaderVideo.remove();
+        overlay.remove();
         display.innerHTML = data;
       }, 1000);
     });

@@ -11,78 +11,83 @@
       <% end %>
     </div>
 
-    <% if @movie['overview'].present? %>
-      <p class="detail-overview"><%= @movie['overview'] %></p>
-    <% end %>
+    <div class="detail-right">
+      <% if @movie['overview'].present? %>
+        <p class="detail-overview"><%= @movie['overview'] %></p>
+        <p class="release-year">📅 <%= @movie['release_date'].first(4) %></p>
+      <% end %>
 
-    <% if @movie_director.present? %>
-      <div class="director">
-        🎬 Réalisateur :
-        <% if @movie_director_photo_url.present? %>
-          <%= image_tag @movie_director_photo_url, alt: @movie_director, class: "director-photo" %>
-        <% end %>
-        <span><%= @movie_director %></span>
-      </div>
-    <% end %>
+      <% if @movie_director.present? %>
+        <div class="director">
+          🎬 Réalisateur :
+          <% if @movie_director_photo_url.present? %>
+            <%= image_tag @movie_director_photo_url, alt: @movie_director, class: "director-photo" %>
+          <% end %>
+          <span><%= @movie_director %></span>
+        </div>
+      <% end %>
 
-    <% if @movie_actors.present? %>
-      <div class="casting">
-        👤 Acteurs :
-        <% @movie_actors.first(3).each do |actor| %>
-          <div class="actor">
-            <% if actor["profile_path"].present? %>
-              <%= image_tag "https://image.tmdb.org/t/p/w154#{actor["profile_path"]}" %>
-            <% end %>
-            <p><%= actor["name"] %></p>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+      <% if @movie_actors.present? %>
+        <div class="casting">
+          👤 Acteurs :
+          <% @movie_actors.first(3).each do |actor| %>
+            <div class="actor">
+              <% if actor["profile_path"].present? %>
+                <%= image_tag "https://image.tmdb.org/t/p/w154#{actor["profile_path"]}" %>
+              <% end %>
+              <p><%= actor["name"] %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
 
-    <% if @movie["categories"].present? %>
-      <div class="categories">
-        🏷️ Catégories :
-        <% @movie["categories"].each do |category| %>
-          <span class="tag"><%= category['name'] %></span>
-        <% end %>
-      </div>
-    <% end %>
-
-    <% if @movie["length"].present? && @movie["min"].present? %>
-      <div class="duration">
-        ⏱️ Durée :
-        <% if @movie["length"].to_i >= 60 %>
-          <%= @movie["hours"].to_i %> h
-          <%= @movie["min"].to_i < 10 ? "0#{@movie["min"].to_i}" : @movie["min"].to_i %>
-        <% else %>
-          <%= @movie["min"].to_i %> min
-        <% end %>
-      </div>
-    <% end %>
-
-    <% if @movie["provider"].present? %>
-      <div class="platforms">
-        📺 Disponible sur :
-        <% @movie["provider"].each do |provider| %>
-          <% logo = {
-            "Disney Plus" => ["providers/disneyplus.webp", "Disney Plus", "https://www.disneyplus.com/fr-fr"],
-            "Netflix" => ["providers/netflix.webp", "Netflix", "https://www.netflix.com"],
-            "Apple TV+" => ["providers/appletv.webp", "Apple TV", "https://tv.apple.com/fr"],
-            "Amazon Prime Video" => ["providers/primevideo.webp", "Amazon Prime Video", "https://www.primevideo.com"],
-            "Canal+" => ["providers/canalplus.webp", "Canal+", "https://www.canalplus.com/"],
-            "HBO Max" => ["providers/max.webp", "HBO Max", "https://www.hbomax.com/fr/fr"],
-            "TF1+" => ["providers/tf1.webp", "TF1+", "https://www.tf1.fr"],
-            "Paramount Plus" => ["providers/paramount.webp", "Paramount Plus", "https://www.paramountplus.com/fr"],
-            "Crunchyroll" => ["providers/crunchyroll.webp", "Crunchyroll", "https://www.crunchyroll.com/fr"]
-          }[provider] %>
-
-          <% if logo.present? %>
-            <%= link_to logo[2], target: "_blank" do %>
-              <%= image_tag logo[0], alt: logo[1], class: "media-provider" %>
+      <% if @movie["genres"].present? %>
+        <div class="categories">
+          🏷️ Catégories :
+          <% @movie["genres"].each do |category| %>
+            <% if category['name'].present? %>
+              <span class="tag"><%= category['name'] %></span>
             <% end %>
           <% end %>
-        <% end %>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
+
+      <% if @movie["length"].present? && @movie["min"].present? %>
+        <div class="duration">
+          ⏱️ Durée :
+          <% if @movie["length"].to_i >= 60 %>
+            <%= @movie["hours"].to_i %> h
+            <%= @movie["min"].to_i < 10 ? "0#{@movie["min"].to_i}" : @movie["min"].to_i %>
+          <% else %>
+            <%= @movie["min"].to_i %> min
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @movie["provider"].present? %>
+        <div class="platforms">
+          📺 Disponible sur :
+          <% @movie["provider"].each do |provider| %>
+            <% logo = {
+              "Disney Plus" => ["providers/disneyplus.webp", "Disney Plus", "https://www.disneyplus.com/fr-fr"],
+              "Netflix" => ["providers/netflix.webp", "Netflix", "https://www.netflix.com"],
+              "Apple TV+" => ["providers/appletv.webp", "Apple TV", "https://tv.apple.com/fr"],
+              "Amazon Prime Video" => ["providers/primevideo.webp", "Amazon Prime Video", "https://www.primevideo.com"],
+              "Canal+" => ["providers/canalplus.webp", "Canal+", "https://www.canalplus.com/"],
+              "HBO Max" => ["providers/max.webp", "HBO Max", "https://www.hbomax.com/fr/fr"],
+              "TF1+" => ["providers/tf1.webp", "TF1+", "https://www.tf1.fr"],
+              "Paramount Plus" => ["providers/paramount.webp", "Paramount Plus", "https://www.paramountplus.com/fr"],
+              "Crunchyroll" => ["providers/crunchyroll.webp", "Crunchyroll", "https://www.crunchyroll.com/fr"]
+            }[provider] %>
+
+            <% if logo.present? %>
+              <%= link_to logo[2], target: "_blank" do %>
+                <%= image_tag logo[0], alt: logo[1], class: "media-provider" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
