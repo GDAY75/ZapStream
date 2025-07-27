@@ -2,23 +2,21 @@
   <div>
     <%= link_to serie_path(serie["id"]) do %>
       <% if %>
-        <%= image_tag serie_poster_url, class:"movie-poster" %>
+        <%= image_tag serie_poster_url, class:"media-poster" %>
       <% else %>
-        <%= image_tag "default_media_poster.jpg", class:"movie-poster" %>
+        <%= image_tag "default_media_poster.jpg", class:"media-poster" %>
       <% end %>
     <% end %>
   </div>
 
-  <div class="movie-details">
-
+  <div class="media-details">
     <div>
       <h2><%= serie_title %></h2>
     </div>
     <%= render "shared/providers", providers: serie_providers %>
 
     <div class="summary-box">
-      <p class="movie-summary"><%= serie_summary %></p>
+      <p class="media-summary"><%= serie_summary %></p>
     </div>
-
   </div>
 <% end %>

@@ -10,7 +10,7 @@ export default class extends Controller {
   togglePower() {
     const monitorContainer = document.getElementById("monitor-container");
     const monitorScreen = document.getElementById("monitor-screen");
-    const display = document.getElementById("display-movie");
+    const display = document.getElementById("display-media");
 
     this.poweredOn = !this.poweredOn;
 
@@ -28,9 +28,9 @@ export default class extends Controller {
     if (!this.poweredOn) return; // Ne fait rien si la télé est éteinte
 
     const screen = document.getElementById("monitor-screen");
-    const display = document.getElementById("display-movie");
+    const display = document.getElementById("display-media");
 
-    // Ajoute une vidéo dans monitor-screen (mais en dehors de #display-movie)
+    // Ajoute une vidéo dans monitor-screen (mais en dehors de #display-media)
     const loaderVideo = document.createElement("video");
     loaderVideo.src = "/videos/screen-wait3.mp4";
     loaderVideo.autoplay = true;
