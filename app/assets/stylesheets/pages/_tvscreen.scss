@@ -52,6 +52,18 @@
   display: block;
 }
 
+.animation-color-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(81, 28, 41, 0.9); /* #511c29 with alpha */
+  mix-blend-mode: color; /* This replaces the hue/saturation of the video */
+  z-index: 2;
+  pointer-events: none;
+}
+
 @media all and (min-width: 960px) {
   #monitor {
     -webkit-animation: tvflicker .2s infinite alternate;
@@ -121,6 +133,7 @@
 .movie-summary {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -135,7 +148,6 @@
 }
 
 @media (max-width: 768px) {
-
   .movie-provider{
     width: 25%;
   }
@@ -150,11 +162,9 @@
 }
 
 @media (max-width: 1256px) {
-
   .movie-poster{
     max-width: 80%;
   }
-
 }
 
 #monitor-container.off {
@@ -184,7 +194,6 @@
     border-radius: 50%;
     box-shadow: 0 0 6px 2px rgba(255, 0, 0, 0.6);
   }
-
 }
 
 .shutdown-flash {
