@@ -29,14 +29,18 @@
 
       <% if @movie_actors.present? %>
         <div class="casting">
-          👤 Acteurs :
-          <% @movie_actors.first(3).each do |actor| %>
-            <div class="actor">
-              <% if actor["profile_path"].present? %>
-                <%= image_tag "https://image.tmdb.org/t/p/w154#{actor["profile_path"]}" %>
+          <% if @movie_actors[0].present? %>
+            👤 Acteurs :
+            <% @movie_actors.first(3).each do |actor| %>
+              <% if actor.present? %>
+                <div class="actor">
+                  <% if actor["profile_path"].present? %>
+                    <%= image_tag "https://image.tmdb.org/t/p/w154#{actor["profile_path"]}" %>
+                  <% end %>
+                  <p><%= actor["name"] %></p>
+                </div>
               <% end %>
-              <p><%= actor["name"] %></p>
-            </div>
+            <% end %>
           <% end %>
         </div>
       <% end %>

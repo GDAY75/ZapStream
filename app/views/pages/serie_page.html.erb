@@ -15,8 +15,8 @@
       <p class="release-year">📅 <%= @serie['first_air_date'].first(4) %></p>
 
       <div class="casting">
-        👤 Acteurs :
         <% if @serie_actors[0].present? %>
+          👤 Acteurs :
           <div class="actor">
             <%= image_tag "https://image.tmdb.org/t/p/w154#{@serie_actors[0]["profile_path"]}" %>
             <p><%= @serie_actors[0]["name"] %></p>
