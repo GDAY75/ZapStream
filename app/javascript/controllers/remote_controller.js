@@ -14,15 +14,26 @@ export default class extends Controller {
 
     this.poweredOn = !this.poweredOn;
 
+    // Sélecteurs des boutons providers et médias
+    const providerButtons = this.element.querySelectorAll(".button-square");
+    const mediaButtons = this.element.querySelectorAll(".button-rectangle");
+
     if (!this.poweredOn) {
       monitorContainer.classList.add("off");
-      monitorScreen.classList.add("power-off"); // Ajout ici pour lancer l'animation
+      monitorScreen.classList.add("power-off");
       display.innerHTML = "";
+
+      // Retirer la classe active à tous les boutons
+      providerButtons.forEach(btn => btn.classList.remove("active"));
+      mediaButtons.forEach(btn => btn.classList.remove("active"));
     } else {
       monitorContainer.classList.remove("off");
-      monitorScreen.classList.remove("power-off"); // Enlève l'animation au rallumage
+      monitorScreen.classList.remove("power-off");
+
+      // Ne pas réactiver les boutons : on laisse tout désactivé comme au démarrage
     }
   }
+
 
   zap() {
     if (!this.poweredOn) return; // Ne fait rien si la télé est éteinte
