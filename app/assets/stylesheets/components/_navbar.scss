@@ -1,6 +1,5 @@
 .navbar-main {
   justify-content: space-between;
-  background: #a29c9b;
   border-bottom: 1px solid #242529;
   height: 100px;
   min-height: 100px;
@@ -9,10 +8,15 @@
   width: 100%;
   z-index: 1000;
   top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px); // flou d’arrière-plan pour plus de lisibilité
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .navbar-main .navbar-brand img {
   width: 84px;
+  filter: none;
+  opacity: 1;
 }
 
 .navbar-main .navbar-middle{
